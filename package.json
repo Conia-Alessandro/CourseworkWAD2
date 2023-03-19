@@ -1,0 +1,33 @@
+{
+  "name": "courseworkwad2",
+  "version": "1.0.0",
+  "description": "Alessandro's coursework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Conia-Alessandro/CourseworkWAD2.git"
+  },
+  "keywords": [
+    "js",
+    "node",
+    "npm",
+    "html",
+    "nedb"
+  ],
+  "author": "Alessandro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Conia-Alessandro/CourseworkWAD2/issues"
+  },
+  "homepage": "https://github.com/Conia-Alessandro/CourseworkWAD2#readme",
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "supertest": "^6.3.3"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
