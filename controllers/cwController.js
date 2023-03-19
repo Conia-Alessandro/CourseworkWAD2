@@ -2,11 +2,14 @@
 const userDAO = require('../models/userModel');
 //new instance of guestbook db
 const db = new userDAO();
+const path = require('path'); //path dependency, __dirname
+const public = path.join(__dirname,'public'); // public dir
 
 exports.landing_page = function(req,res){
     db.init(); //Initiate DB as the first thing
     //res.redirect("../public/index.html"); //TODO change to a better looking page, currently this doesn't work
-    res.send("<h1>Landing page.</h1>");
+    //res.sendFile(path.join(__dirname+"index.html"));
+    res.send("<h1>Landing page</h1>");
 }
 exports.about_us = function(req,res){
     res.send("<h1>about page to be implemented</h1>");
