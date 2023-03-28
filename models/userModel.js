@@ -47,6 +47,18 @@ class User {
             })
         })
     }
+    lookup(email, cb) {
+        this.db.find({ 'email': email }, function (err, entries) {
+            if (err) {
+                return cb(null, null);
+            } else {
+                if (entries.length == 0) {
+                    return cb(null, null);
+                }
+                return cb(null, entries[0]);
+            }
+        });
+    }
 }
 //module visible outside:
 module.exports = User;
