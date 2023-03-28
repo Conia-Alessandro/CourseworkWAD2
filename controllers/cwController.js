@@ -3,7 +3,7 @@ const userDAO = require('../models/userModel');
 //new instance of guestbook db
 const db = new userDAO();
 const path = require('path'); //path dependency, __dirname
-const public = path.join(__dirname,'public'); // public dir
+const pub = path.join(__dirname,'public'); // public dir
 
 exports.landing_page = function(req,res){
     db.init(); //Initiate DB as the first thing
