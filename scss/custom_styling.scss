@@ -1,0 +1,8 @@
+//can modify colors, styles etc
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/bootstrap"; //the whole bootstrap
+
+//color pallettes
+$active_btn_color: #30BCED;
+//customized styles
+$primary: $active_btn_color;

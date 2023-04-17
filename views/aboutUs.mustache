@@ -1,0 +1,75 @@
+<html>
+   <head>
+        {{>header}}
+   </head>
+   <nav class="navbar navbar-expand-md" style="background-color: #ffe4f4;"> <!-- was  #e3f2fd -->
+    <div class="container-fluid">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav me-auto"> <!--was mr -->
+            <a class="navbar-brand" href="#" style="font-size:1.75rem">
+            <img src="images/phone_icon.png" width="30" height="30" alt="a picture of the Trackfriends logo">
+            TrackFriend
+            </a>
+            <li class="nav-item my-auto">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item my-auto">
+                <a class="nav-link disabled" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item my-auto">
+                <a class="nav-link disabled" href="#">Achievements</a>
+            </li>
+            <li class="nav-item my-auto">
+                <a class="nav-link disabled" href="#">Goals centre</a>
+            </li>
+            <li class="nav-item my-auto active">
+                <a class="nav-link" href="#">About us</a>
+            </li>
+        </ul>
+        </div>
+    <div class="navbar-collapse collapse w-100 order-2 dual-collapse2"> <!-- was order 3 -->
+    <ul class="navbar-nav ms-auto">
+        {{^user}}
+            <li class="nav-item">
+                <a class="nav-link " id="login" href="/login">Sign in</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="btn btn-primary" id="register" href="/register">Register</a> <!-- might remove the btn -->
+            </li> 
+        {{/user}}
+        {{#user}} <!-- if there's a user -->
+            <li class="nav-item">
+                <a class="nav-link btn btn-primary" href="/logout">Sign out</a> <!-- might remove the btn -->
+            </li>
+        {{/user}}
+        </ul>
+        </div>
+        </div> <!--container-->
+    </div>
+</nav>
+    <body>   
+    <div class="card border-0 mx-auto">
+        <div class="card-body border-0">
+            <h3 class="card-title border-0"> Meet our Team </h3>  
+             <hr class="mx-auto" style="height:2px; width:100%; border-width:0; color:red; background-color:#6611EE">
+        </div>
+    </div>
+    <!-- content -->
+    
+    <div class="d-flex flex-row card border-0 mx-auto" style="width:80%;"> <!-- was card , then card body, title and text -->
+        <div class="p2 card-body border-0">
+            <img class="img-fluid img-thumbnail rounded-circle" src="images/TeamMember.jpg" style="max-width:50%;height:auto"alt="a team member at {{company_name}}">
+            
+        </div>
+        <div class="card-body border-0 me-auto my-auto">
+            
+            <h2 class="card-title"style="width:75%;">Alessandro Conia</h1>  
+            <p class="card-text" style="width:70%;">Lead site engineer, senior developer at {{company_name}}, Computing graduate with honours at GCU (Glasgow).</p>
+            <br>
+            <a class="btn btn-primary">find out more ></a>
+        </div>
+    </div>
+           
+    </body>
+</html>

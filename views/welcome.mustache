@@ -2,25 +2,28 @@
    <head>
         {{>header}}
    </head>
-   <nav class="navbar navbar-expand-md " style="background-color: #e3f2fd;">
+   <nav class="navbar navbar-expand-md" style="background-color: #ffe4f4;"> <!-- was  #e3f2fd -->
     <div class="container-fluid">
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav me-auto"> <!--was mr -->
             <a class="navbar-brand" href="#" style="font-size:1.75rem">
-            <img src="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/256/external-phone-delivery-kiranshastry-gradient-kiranshastry.png" width="30" height="30" alt="a picture of the Trackfriends logo">
+            <img src="images/phone_icon.png" width="30" height="30" alt="a picture of the Trackfriends logo">
             TrackFriend
             </a>
-            <li class="nav-item">
+            <li class="nav-item my-auto">
+                <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item my-auto">
                 <a class="nav-link disabled" href="#">Dashboard</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item my-auto">
                 <a class="nav-link disabled" href="#">Achievements</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item my-auto">
                 <a class="nav-link disabled" href="#">Goals centre</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Abouts us</a>
+            <li class="nav-item my-auto">
+                <a class="nav-link" href="/about">About us</a>
             </li>
         </ul>
         </div>
@@ -45,15 +48,24 @@
         </div> <!--container-->
     </div>
 </nav>
-    <body>
+    <body>   
     <div class="card border-0">
         <div class="card-body border-0">
-            <h1 class="card-title border-0"> The {{title}} page, how charming </h1>  
+            <h3 class="card-title border-0"> Welcome to {{company_name}}'s {{title}} page </h3>  
         </div>
     </div>
     <!-- content -->
-
-    
+    <div class="d-flex flex-row card border-0 mx-auto" style="width:80%;"> <!-- was card , then card body, title and text -->
+        <div class="p2 card-body border-0">
+            <h2 class="card-title"style="width:75%;"> Start balancing your life’s most important aspects, sign up for {{company_name}} now.</h1>  
+            <p class="card-text" style="width:70%;">do you want to initiate healthy habits and keep track of your progress? {{company_name}} is for you</p>
+            <br>
+            <a class="btn btn-primary btn-lg">Start now for free</a>
+        </div>
+        <div class="card-body border-0 me-auto">
+            <img src="images/trendy_relaxing.jpg">
+        </div>
+    </div>
            
     </body>
 </html>
