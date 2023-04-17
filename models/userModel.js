@@ -8,11 +8,11 @@ class User {
             this.db = new nedb();
         }
     }
-    //methods , initiation
+    //methods , initiation , passwords will be hashed accordingly.
     init() {
         this.db.insert({
             email: 'mockemail@gmail.com',
-            password: '4VerySecurePSSW',
+            password: '4VerySecurePSSW', 
             DOB: '2001-09-13',
             name: 'Alessandro',
             surname: 'Conia',
@@ -47,7 +47,7 @@ class User {
             })
         })
     }
-    lookup(email, cb) {
+    lookup(email, cb) { // cb stands for callback
         this.db.find({ 'email': email }, function (err, entries) {
             if (err) {
                 return cb(null, null);

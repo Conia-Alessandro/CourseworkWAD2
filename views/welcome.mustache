@@ -1,0 +1,59 @@
+<html>
+   <head>
+        {{>header}}
+   </head>
+   <nav class="navbar navbar-expand-md " style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav me-auto"> <!--was mr -->
+            <a class="navbar-brand" href="#" style="font-size:1.75rem">
+            <img src="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/256/external-phone-delivery-kiranshastry-gradient-kiranshastry.png" width="30" height="30" alt="a picture of the Trackfriends logo">
+            TrackFriend
+            </a>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Achievements</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Goals centre</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Abouts us</a>
+            </li>
+        </ul>
+        </div>
+    <div class="navbar-collapse collapse w-100 order-2 dual-collapse2"> <!-- was order 3 -->
+    <ul class="navbar-nav ms-auto">
+        {{^user}}
+            <li class="nav-item">
+                <a class="nav-link " id="login" href="/login">Sign in</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="btn btn-primary" id="register" href="/register">Register</a> <!-- might remove the btn -->
+            </li> 
+        {{/user}}
+        {{#user}} <!-- if there's a user -->
+            <li class="nav-item">
+                <a class="nav-link btn btn-primary" href="/logout">Sign out</a> <!-- might remove the btn -->
+            </li>
+        {{/user}}
+        </ul>
+        </div>
+        </div> <!--container-->
+    </div>
+</nav>
+    <body>
+    <div class="card border-0">
+        <div class="card-body border-0">
+            <h1 class="card-title border-0"> The {{title}} page, how charming </h1>  
+        </div>
+    </div>
+    <!-- content -->
+
+    
+           
+    </body>
+</html>

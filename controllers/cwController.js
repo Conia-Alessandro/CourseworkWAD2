@@ -9,8 +9,10 @@ exports.landing_page = function(req,res){
     db.init(); //Initiate DB as the first thing
     //res.redirect("../public/index.html"); //TODO change to a better looking page, currently this doesn't work
     //res.sendFile(`C:\\Users\\39328\\Desktop\\WAD2\\CourseworkWAD2\\public\\index.html`);
-    res.sendFile(path.join(__dirname,"..","public","index.html"));
-    //res.send("<h1>Landing page</h1>");
+    //res.sendFile(path.join(__dirname,"..","public","index.html"));
+    res.render('welcome', {
+        'title': 'Home'
+    });
 }
 exports.about_us = function(req,res){
     res.send("<h1>about page to be implemented</h1>");
