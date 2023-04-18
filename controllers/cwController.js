@@ -38,10 +38,16 @@ exports.show_users = function(req,res){
     */
 }
 exports.new_user = function(req,res){
-    res.send("<h1>Registering to be implemented</h1>");
+    res.render('user/register',{
+        'title': 'Register',
+        'company_name': companyName 
+    })
 }
 exports.existing_user = function(req,res){
-    res.send("<h1>login user, to be implemented</h1>");
+    res.render('user/login',{
+        'title': 'Login',
+        'company_name': companyName 
+    })
 }
 exports.dashboard = function (req,res){
     res.send("<h1>dashboard for logged in user, to be implemented</h1>");
