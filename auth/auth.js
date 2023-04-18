@@ -39,7 +39,7 @@ exports.verify = function (req, res, next) {
     if (!accessToken) {
         console.log("no access token, redirecting...");
         //return res.status(403).send();
-        res.redirect("/login");
+        return res.redirect("/login");
     }
     let payload;
     try {
@@ -51,7 +51,7 @@ exports.verify = function (req, res, next) {
     } catch (e) {
         //error caught
         console.log("redirecting...");
-        res.redirect("/login");
+        return res.redirect("/login");
         //res.status(401).send();
     }
 };

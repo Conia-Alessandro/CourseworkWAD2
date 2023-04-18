@@ -4,7 +4,10 @@
   "description": "Alessandro's coursework",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "sass-watch": "sass --no-source-map --watch scss/custom_style.scss public/style/custom_style.css",
+    "nodemon-watch": "nodemon index.js -e *",
+    "dev": "npm-run-all --parallel sass-watch nodemon-watch"
   },
   "jest": {
     "testEnvironment": "node",
@@ -31,6 +34,8 @@
   "homepage": "https://github.com/Conia-Alessandro/CourseworkWAD2#readme",
   "devDependencies": {
     "jest": "^29.5.0",
+    "nodemon": "^2.0.22",
+    "npm-run-all": "^4.1.5",
     "supertest": "^6.3.3"
   },
   "dependencies": {
