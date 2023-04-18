@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json()); //might be removed
+app.use(bodyParser.urlencoded({ extended: false }));
 const port = process.env.port || 3001; //the environment port
 const compileSass = require('compile-sass');
 const { compileSassAndSaveMultiple } = require('compile-sass'); // CommonJS

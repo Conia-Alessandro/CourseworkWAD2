@@ -1,4 +1,6 @@
 const nedb = require('nedb'); //nedb requirement
+const bcrypt = require('bcrypt'); //bcrypt requirement
+const saltRounds = 10;
 class User {
     constructor(dbFilePath) {
         if (dbFilePath) {
@@ -12,22 +14,16 @@ class User {
     init() {
         this.db.insert({
             email: 'mockemail@gmail.com',
+            username: 'Alessa1',
             password: '4VerySecurePSSW', 
-            DOB: '2001-09-13',
-            name: 'Alessandro',
-            surname: 'Conia',
-            gender: 'Male',
             weight: '74',
             unit:'kg'
 
         });
         this.db.insert({
             email: 'anothermail@gmail.com',
-            password: 'cat4life003',
-            DOB: '2002-08-12',
-            name: 'Andrea',
-            surname: 'Stewart',
-            gender: 'Male',
+            username: 'Andrea22',
+            password: 'cats4life003',
             weight: '81',
             unit:'kg'
         });
@@ -42,20 +38,35 @@ class User {
                     reject(err);
                 } else {
                     resolve(entries);
-                    console.log("function allUsers() returns ", entries);
+                    console.log("function getAllUsers() returns ", entries);
                 }
             })
         })
     }
-    lookup(email, cb) { // cb stands for callback
-        this.db.find({ 'email': email }, function (err, entries) {
+    create(username, password) {
+        const that = this;
+        bcrypt.hash(password, saltRounds).then(function (hash) {
+            var entry = {
+                username: username,
+                password: hash,
+            };
+            that.db.insert(entry, function (err) {
+                if (err) {
+                    console.log("Can't insert user: ", username);
+                }
+            });
+        });
+    }
+    lookup(username, cb) { //cb stands for callback
+        this.db.find({ 'username': username }, function (err, entries) {
             if (err) {
                 return cb(null, null);
             } else {
                 if (entries.length == 0) {
                     return cb(null, null);
                 }
-                return cb(null, entries[0]);
+                console.log("FOUND ",entries[0]);
+                return cb(null, entries[0]); // no error, return 1 entry, the first.
             }
         });
     }

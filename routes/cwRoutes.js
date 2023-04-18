@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/cwController.js');
 const {verify} = require("../auth/auth.js");
+const {login} = require ("../auth/auth.js");
 router.get("/",controller.landing_page);
 router.get("/about",controller.about_us);
 router.get("/register",controller.new_user);
+router.post("/register",controller.validate_fields,controller.post_register);
 router.get("/login",controller.existing_user);
+router.post("/login",login,controller.post_login)
 router.get("/dashboard",verify,controller.dashboard);
 router.get("/goals",verify,controller.goal_page);
 router.get("/achievements",verify,controller.achievements);
