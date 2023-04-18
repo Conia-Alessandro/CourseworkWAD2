@@ -14,13 +14,13 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link disabled" href="#">Dashboard</a>
+                <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link disabled" href="#">Achievements</a>
+                <a class="nav-link" href="/achievements">Achievements</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link disabled" href="#">Goals centre</a>
+                <a class="nav-link" href="/goals">Goals centre</a>
             </li>
             <li class="nav-item my-auto">
                 <a class="nav-link" href="/about">About us</a>
@@ -50,33 +50,33 @@
 </nav>
     <body>   
     <!-- content -->
-    <div class="d-flex flex-row card border-0 mx-auto" style="width:80%;"> 
+    <div class="d-flex flex-row card border-0 mx-auto justify-content-between" style="width:80%;"> 
         <div class="p2 card-body border-0">
              <!-- image of young person registering goes here-->
-            <img class="img-fluid rounded" src="images/register_background.PNG" style="max-width:60vw;height:auto;width:100%"alt="an image of a young person registering">
+            <img class="img-fluid rounded" src="images/register_background.PNG" style="max-height:100vh;max-width:60vw;height:auto;width:100%"alt="an image of a young person registering">
         </div>
         <div class="card-body border-0 me-auto my-auto">
             
             <h2 class="card-title"style="width:75%;">Register</h1>  
             <br>
-            <form method="post" role="/register">
-            <div class="form-group">
-                {{user-name-error}}
+            <form method="post" role="/register" class="border-0">
+            <div class="form-group w-50">
+                {{user_name_error}}
                 <label for="username">User Name</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder=""  required>
+                <input type="text" class="form-control" id="username" name="username" placeholder="" required>
                 <br>
             </div>
-            <div class="form-group">
+            <div class="form-group w-50">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="psw" name="psw" placeholder="" minlength="8"  required>
                 <br>
             </div>
-            <div class="form-group">
+            <div class="form-group w-50">
                 <label for="repeat_password">Repeat Password</label>
                 <input type="password" class="form-control" id="psw_2" name="psw_2" placeholder="" minlength="8"  required>
                 <br>
             </div>
-            <div class="form-check">
+            <div class="form-check w-50">
                 <input class="form-check-input" type="checkbox" value="" id="tosCheck" onchange="validate()" required>
                 <label class="form-check-label" for="tosCheck">
                 I Accept {{company_name}} Account terms and conditions including the mobile application <a href="#">Terms of Service and data storage policies </a>.

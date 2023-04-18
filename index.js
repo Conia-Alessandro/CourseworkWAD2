@@ -14,6 +14,7 @@ const pub = path.join(__dirname,'public'); // public dir
 app.use('/css', express.static(path.join(node_modules_dir,'bootstrap','dist','css'))); 
 app.use('/images',express.static(path.join(pub,"images")));  //use this for images
 /* 
+//manually converting SASS to CSS with function
 app.use('/styles/:cssName', compileSass.setup({
     sassFilePath: path.join(pub,'..','scss'),
     sassFileExt: 'sass',
@@ -25,6 +26,12 @@ app.use('/styles/:cssName', compileSass.setup({
     }
   }));
 */
+//modify the .env file
+require('dotenv').config()
+//cookie parser for security
+const cookieParser = require('cookie-parser')
+app.use(cookieParser())
+
 const fs = require('fs'); // File system dependency
 //Mustache dependency
 const mustache = require('mustache-express');

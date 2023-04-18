@@ -14,13 +14,13 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link disabled" href="#">Dashboard</a>
+                <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link disabled" href="#">Achievements</a>
+                <a class="nav-link" href="/achievements">Achievements</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link disabled" href="#">Goals centre</a>
+                <a class="nav-link" href="/goals">Goals centre</a>
             </li>
             <li class="nav-item my-auto">
                 <a class="nav-link" href="/about">About us</a>
@@ -50,7 +50,7 @@
 </nav>
     <body>   
     <!-- content -->
-    <div class="d-flex flex-row card border-0 mx-auto" style="width:80%;"> 
+    <div class="d-flex flex-row card border-0 mx-auto justify-content-between" style="width:80%;"> 
         <div class="p2 card-body border-0">
              <!-- image of young person registering goes here-->
             <img class="img-fluid rounded" src="images/relaxed_outside.jpg" style="max-height:80vh;height:auto;width:auto"alt="an image of a young person registering">
@@ -59,23 +59,21 @@
             
             <h2 class="card-title"style="width:75%;">Login</h1>  
             <br>
-            <form method="post" role="/register">
-            <div class="form-group">
+            <form method="post" role="/register" class="border-0">
+            <div class="form-group w-50">
                 {{user-name-error}}
                 <label for="username">User Name</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder=""  required>
                 <br>
             </div>
-            <div class="form-group">
+            <div class="form-group w-50">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="psw" name="psw" placeholder="" minlength="8"  required>
                 <br>
             </div>
-            <div class="form-check">
+            <div class="form-check w-50">
                 <input class="form-check-input" type="checkbox" value="" id="remember_check">
-                <label class="form-check-label" for="remember_check">
-                Remember me </a>.
-                </label>
+                <label class="form-check-label" for="remember_check">Remember me</label>
                 <br>
             </div>
             <div class="form-group">

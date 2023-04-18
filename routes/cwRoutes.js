@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/cwController.js');
+const {verify} = require("../auth/auth.js");
 router.get("/",controller.landing_page);
 router.get("/about",controller.about_us);
 router.get("/register",controller.new_user);
 router.get("/login",controller.existing_user);
-router.get("/dashboard",controller.dashboard);
-router.get("/goals",controller.goal_page);
-router.get("/achievements",controller.achievements);
+router.get("/dashboard",verify,controller.dashboard);
+router.get("/goals",verify,controller.goal_page);
+router.get("/achievements",verify,controller.achievements);
 router.get("/FAQ",controller.faq);
 router.get("/show",controller.show_users); //TODO, remove only for debugging
 
