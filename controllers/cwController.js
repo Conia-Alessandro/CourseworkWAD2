@@ -10,13 +10,12 @@ const {getUser} = require("../auth/auth");
 
 exports.landing_page = function(req,res){
     //db.init(); //Initiate DB as the first thing, not needed anymore
-     
     //res.redirect("../public/index.html"); //TODO change to a better looking page, currently this doesn't work
     //res.sendFile(`C:\\Users\\39328\\Desktop\\WAD2\\CourseworkWAD2\\public\\index.html`);
     //res.sendFile(path.join(__dirname,"..","public","index.html"));
     res.render('welcome', {
         'title': 'Home',
-        'company_name': companyName 
+        'company_name': companyName
     });
 }
 exports.about_us = function(req,res){

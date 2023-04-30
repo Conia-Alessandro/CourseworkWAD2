@@ -56,6 +56,41 @@
         </div>
     </div>
     <!-- content -->
-           
+    {{^weight_info}}
+    <!--
+    <div class="alert alert-info alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Thank you for registering!</strong> You should consider adding additional information to your profile, such as your weight, please do so at your own time by clicking <a href="/addinfo">Here</a>
+  </div>
+-->
+  <div class="alert alert-info alert-dismissible fade show" id="weight_alert">
+        <strong>Thank you for registering!</strong> You should consider adding additional information to your profile, such as your weight, please do so at your own time by clicking <a href="/addinfo">Here</a>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" id="closingAlrt"></button>
+    </div>
+    {{/weight_info}}
+    <div class="d-flex "> <!-- flex-row border-0 mx-auto-->
+    <div class="flex-fill p-2">
+    <img class="img-fluid img-thumbnail" src="images/run_start.jpg" style="max-width:50%;height:auto"alt="a customer of {{company_name}} preparing to run">
+    </div>
+    <div class="flex-even bg-info p-2">
+    <p class="card-text">Sleep</p>
+    
+    </div>
+    <div class="flex-even bg-info p-2">
+    <p class="card-text">weight loss</p>
+    
+    </div>
+    <div class="flex-even bg-info p-2 ">
+    <p class="card-text">Steps</p>
+    </div>
+    </div>
+    <script>
+    let alert_x =document.getElementById("closingAlrt");
+    let alert_element =document.getElementById("weight_alert");
+    alert_x.addEventListener("click", function(){
+        alert_element.classList.remove("show");
+        alert_element.remove();
+    })
+    </script>
     </body>
 </html>
