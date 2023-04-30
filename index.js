@@ -5,14 +5,18 @@ app.use(bodyParser.json()); //might be removed
 app.use(bodyParser.urlencoded({ extended: false }));
 const port = process.env.port || 3001; //the environment port
 const compileSass = require('compile-sass');
+const favicon = require('serve-favicon');
 const { compileSassAndSaveMultiple } = require('compile-sass'); // CommonJS
 //TODO nedb requirement
 const path = require('path'); //path dependency, __dirname
 const node_modules_dir = path.join(__dirname,'node_modules');
 const pub = path.join(__dirname,'public'); // public dir
-
+//favicon issue
+app.use(favicon(path.join(__dirname,'public','images','phone_icon.ico')));
 //link to bootstrap
 app.use('/css', express.static(path.join(node_modules_dir,'bootstrap','dist','css'))); 
+
+app.use('/style',express.static(path.join(pub,"style")));
 app.use('/images',express.static(path.join(pub,"images")));  //use this for images
 /* 
 //manually converting SASS to CSS with function

@@ -5,6 +5,7 @@ const path = require('path'); //path dependency, __dirname
 const db = new userDAO (path.join(__dirname,'..','databases','users.db'));
 const companyName = "TrackFriend";
 const pub = path.join(__dirname,'public'); // public dir
+const bodyParser = require('body-parser');
 
 exports.landing_page = function(req,res){
     //db.init(); //Initiate DB as the first thing, not needed anymore
@@ -45,10 +46,15 @@ exports.new_user = function(req,res){
         'company_name': companyName 
     })
 }
+
 function containsNumber(str){
     return /\d/.test(str);
 }
+function containsSpecial(str){
+    return /[!-_.]/.test(str);
+}
 exports.validate_fields = function(req,res){
+    let user_name = req.body.username;
     let password1 = req.body.password;
     let password2 = req.body.password2;
     if (password1 != password2){
@@ -58,6 +64,7 @@ exports.validate_fields = function(req,res){
             'password_error': "Passwords have to match!"
         })
     }
+    // no numbers in string provided
     if(!containsNumber(password1)|| !containsNumber(password2)){
         return res.render('user/register',{
             'title': 'Register',
@@ -66,13 +73,45 @@ exports.validate_fields = function(req,res){
         })
 
     }
-    else if (password1 == password2){
-        next();
+    // no special character provided
+    if(!containsSpecial(password1) ||!containsSpecial(password2)){
+        return res.render('user/register',{
+            'title': 'Register',
+            'company_name': companyName,
+            'password_error': "Passwords have to contain at least 1 special character"
+        })
+    }else{
+        console.log("Bruh");
+        if(String(password1) == String(password2)){
+            console.log("passwords match");
+            console.log("creating user: ");
+            db.create(user_name,password1);
+            db.lookup(user_name, function (err, u) { //was userDao
+            if (u) {
+                return res.render('user/register',{
+                    'title': 'Register',
+                    'company_name': companyName,
+                    'user_name_error': "Username already exists, please log in instead"
+                })
+            } else {
+                db.create(user_name, password1); //was userDao
+                console.log("registered", user_name, "with password", password1);
+                res.redirect("/registered");
+                //next(); // this implies ->user created -> verify -> dashboard
+            }
+            })
+            
+        }
     }
+  
+    
+
 }
 //post for the register page, after validation off fields
 exports.post_register = function (req,res){
     //register has succeeded
+    console.log("post register");
+
     //might need to ask for further data (weight for instance)
     res.redirect("/dashboard");
 }

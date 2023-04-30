@@ -53,6 +53,8 @@ class User {
             that.db.insert(entry, function (err) {
                 if (err) {
                     console.log("Can't insert user: ", username);
+                }else{
+                    console.log("user ",username," inserted in the database");
                 }
             });
         });

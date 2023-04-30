@@ -7,7 +7,7 @@
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav me-auto"> <!--was mr -->
             <a class="navbar-brand" href="#" style="font-size:1.75rem">
-            <img src="images/phone_icon.png" width="30" height="30" alt="a picture of the Trackfriends logo">
+            <img src="images/phone_icon.ico" width="30" height="30" alt="a picture of the Trackfriends logo">
             TrackFriend
             </a>
             <li class="nav-item my-auto">
@@ -57,26 +57,30 @@
         </div>
         <div class="card-body border-0 me-auto my-auto">
             
-            <h2 class="card-title"style="width:75%;">Register</h1>  
+            <h2 class="card-title"style="width:75%;">Register</h2>  
             <br>
             <p class="card-text">already have an account? <a href="/login">login instead</a></p>
-            <form method="post" role="/register" class="border-0">
+            <form method="post"  action="/register" class="border-0"> <!--  role="/register" -->
+            <p class="text-danger">{{user_name_error}}</p>
             <div class="form-group w-50">
-                {{user_name_error}}
                 <label for="username">User Name</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="" required>
                 <br>
             </div>
             <p class="text-danger">{{password_error}}</p>
             <div class="form-group w-50">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="" minlength="8"  required>
-                <br>
+            <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="" minlength="8" aria-label="first_password" required>
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                Your password must be 8-20 characters: letters, numbers and special characters are valid.
+                </small>
             </div>
             <div class="form-group w-50">
                 <label for="repeat_password">Repeat Password</label>
-                <input type="password" class="form-control" id="password2" name="password2" placeholder="" minlength="8"  required>
-                <br>
+                <input type="password" class="form-control" id="password2" name="password2" placeholder="" minlength="8" aria-label="second_password"   required>
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                 Your password must be 8-20 characters: letters, numbers and special characters are valid.
+                </small>
             </div>
             <div class="form-check w-50">
                 <input class="form-check-input" type="checkbox" value="" id="tosCheck" onchange="validate()" required>
@@ -90,7 +94,6 @@
                 <br>
                 <input type="submit" id="register_btn" value="Register" class="btn btn-primary btn-lg" disabled>
             </div>
-                
             </div>
             </form>
         </div>
