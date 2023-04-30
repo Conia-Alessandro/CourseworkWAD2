@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const userModel = require('../models/userModel');
 const path = require('path'); //path dependency, __dirname
-const userDb = new userModel(path.join(__dirname,'..','databases','users.db')); //for now commented
+const userDb = new userModel(path.join(__dirname, '..', 'databases', 'users.db')); //for now commented
 //console.log(path.join(__dirname,'..','databases','users.db'));
 const jwt = require("jsonwebtoken");
 
@@ -23,7 +23,7 @@ exports.login = function (req, res, next) {
         //compare provided password with stored password
         bcrypt.compare(password, user.password, function (err, result) {
             if (result) {
-                console.log("user ",user.username," exists, logging you in.");
+                console.log("user ", user.username, " exists, logging you in.");
                 //if user exists we create the JWT
                 let payload = { username: user.username };
                 let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
@@ -31,6 +31,7 @@ exports.login = function (req, res, next) {
                 //and then pass onto the next middleware
                 next();
             } else {
+                //comparison fail
                 return res.status(403).send();
             }
         });
@@ -39,7 +40,7 @@ exports.login = function (req, res, next) {
 
 exports.verify = function (req, res, next) {
     let accessToken = req.cookies.jwt;
-    
+
     if (!accessToken) {
         console.log("no access token, redirecting...");
         //return res.status(403).send();
@@ -47,11 +48,11 @@ exports.verify = function (req, res, next) {
     }
     let payload;
     try {
-        payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET) 
-        var userId = payload.id;
-        console.log("user id for ",req.body.username,"is ",userId);
+        payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+        console.log("username found in jwt: ", payload.username); //was req.body.username and userid
+        req.username = payload.username;
         next();
-        
+
     } catch (e) {
         //error caught
         console.log("redirecting...");

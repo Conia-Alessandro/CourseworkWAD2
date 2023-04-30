@@ -6,6 +6,7 @@ const db = new userDAO (path.join(__dirname,'..','databases','users.db'));
 const companyName = "TrackFriend";
 const pub = path.join(__dirname,'public'); // public dir
 const bodyParser = require('body-parser');
+const {getUser} = require("../auth/auth");
 
 exports.landing_page = function(req,res){
     //db.init(); //Initiate DB as the first thing, not needed anymore
@@ -84,8 +85,7 @@ exports.validate_fields = function(req,res){
         console.log("Bruh");
         if(String(password1) == String(password2)){
             console.log("passwords match");
-            console.log("creating user: ");
-            db.create(user_name,password1);
+          
             db.lookup(user_name, function (err, u) { //was userDao
             if (u) {
                 return res.render('user/register',{
@@ -94,6 +94,7 @@ exports.validate_fields = function(req,res){
                     'user_name_error': "Username already exists, please log in instead"
                 })
             } else {
+                console.log("creating user: ");
                 db.create(user_name, password1); //was userDao
                 console.log("registered", user_name, "with password", password1);
                 res.redirect("/registered");
@@ -129,11 +130,14 @@ exports.post_login = function(req,res){
 }
 //landing in dashboard after login POST 
 exports.dashboard = function (req,res){
-    res.render("user/pages/dashboard",{
-        'title':'profile Dashboard',
-        'company_name': companyName,
-        'user': req.username
-    })
+console.log("username: ",req.username);
+
+res.render("user/pages/dashboard",{
+                'title':'profile Dashboard',
+                'company_name': companyName,
+                'user': req.username,
+                'user_name':req.username
+})
 }
 exports.goal_page = function(req,res){
     res.send("<h1>goals page to be implemented</h1>");
