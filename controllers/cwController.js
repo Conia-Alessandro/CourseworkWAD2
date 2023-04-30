@@ -148,3 +148,14 @@ exports.achievements = function(req,res){
 exports.faq = function(req,res){
     res.send("<h1>faq to be implemented</h1>");
 }
+exports.handle_logout = function(req,res){
+    /*
+    req.logout(function(err) {
+        if (err) { res.send(401, 'Error found in logging out'); }
+        res.redirect('/');
+      });
+    */
+    res.clearCookie("jwt")
+      .status(200)
+      .redirect("/");
+}
