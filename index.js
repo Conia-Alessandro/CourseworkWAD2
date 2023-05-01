@@ -18,19 +18,7 @@ app.use('/css', express.static(path.join(node_modules_dir,'bootstrap','dist','cs
 
 app.use('/style',express.static(path.join(pub,"style")));
 app.use('/images',express.static(path.join(pub,"images")));  //use this for images
-/* 
-//manually converting SASS to CSS with function
-app.use('/styles/:cssName', compileSass.setup({
-    sassFilePath: path.join(pub,'..','scss'),
-    sassFileExt: 'sass',
-    embedSrcMapInProd: true,
-    resolveTildes: true,
-    sassOptions: {
-      alertAscii: true,
-      verbose: true
-    }
-  }));
-*/
+app.use('/icons',express.static(path.join(pub,"images","icons")));
 //modify the .env file
 require('dotenv').config()
 //cookie parser for security

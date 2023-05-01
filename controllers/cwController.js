@@ -15,7 +15,8 @@ exports.landing_page = function(req,res){
     //res.sendFile(path.join(__dirname,"..","public","index.html"));
     res.render('welcome', {
         'title': 'Home',
-        'company_name': companyName
+        'company_name': companyName,
+        'user':req.username
     });
 }
 exports.about_us = function(req,res){
@@ -81,7 +82,7 @@ exports.validate_fields = function(req,res){
             'password_error': "Passwords have to contain at least 1 special character"
         })
     }else{
-        console.log("Bruh");
+        
         if(String(password1) == String(password2)){
             console.log("passwords match");
           
