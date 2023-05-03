@@ -1,0 +1,128 @@
+<html lang="en">
+   <head>
+        {{>header}}
+   </head>
+   <nav class="navbar navbar-expand-md" style="background-color: #ffe4f4;"> <!-- was  #e3f2fd -->
+    <div class="container-fluid">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav me-auto"> <!--was mr -->
+            <a class="navbar-brand" href="#" style="font-size:1.75rem">
+            <img src="images/phone_icon.ico" width="30" height="30" alt="a picture of the Trackfriends logo">
+            TrackFriend
+            </a>
+            <li class="nav-item my-auto">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item my-auto">
+                <a class="nav-link" href="/achievements">Achievements</a>
+            </li>
+            <li class="nav-item my-auto">
+                <a class="nav-link active" href="/goals">Goals centre</a>
+            </li>
+            <li class="nav-item my-auto">
+                <a class="nav-link" href="#">About us</a>
+            </li>
+        </ul>
+        </div>
+    <div class="navbar-collapse collapse w-100 order-2 dual-collapse2"> <!-- was order 3 -->
+    <ul class="navbar-nav ms-auto">
+        {{^user}}
+            <li class="nav-item">
+                <a class="nav-link " id="login" href="/login">Sign in</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="btn btn-primary" id="register" href="/register">Register</a> <!-- might remove the btn -->
+            </li> 
+        {{/user}}
+        {{#user}} <!-- if there's a user -->
+            <li class="nav-item">
+                <a class="nav-link btn btn-primary" href="/logout">Sign out</a> <!-- might remove the btn -->
+            </li>
+        {{/user}}
+        </ul>
+        </div>
+        </div> <!--container-->
+    </div>
+</nav>
+    <body>   
+    <div class="card border-0 mx-auto">
+        <div class="card-body border-0">
+            <h2 class="text-info">{{user_name}} , what have you in plan for this <a href="#" class="text-primary" style="text-decoration:none;">{{day_name}}?</a></h2>
+            <h4 class="text-secondary">Alternatively to today, you can set Goals for another day! check the Calendar below</h4>
+            <hr class="mx-auto" style="height:2px; width:100%; border-width:0; color:red; background-color:#6611EE">
+        </div>
+    </div>
+    <!-- content -->
+    <!--selectable option -->
+    <div class="btn-group goal-display-option">
+        <input type="radio" class="btn-check" name="repetition_option" id="dayOption" autocomplete="off" checked /> 
+            <label class="btn btn-secondary" for="dayOption">Day Goals</label>
+        <input type="radio" class="btn-check" name="repetition_option" id="weekOption" autocomplete="off" />
+            <label class="btn btn-secondary" for="weekOption">Week Goals</label>
+        <input type="radio" class="btn-check" name="repetition_option" id="monthOption" autocomplete="off" />
+        <label class="btn btn-secondary" for="monthOption">Month Goals</label>
+    </div>
+    <!-- calendar -->
+    <!-- goals -->
+    <div class="row mx-auto justify-content-center">
+        <div class="col-sm-2">
+            <div class="card text-center eepy">
+                <div class="card-body">
+                    <h5 class="card-title">Sleep</h5>
+                    <!-- image of Sleep -->
+                    <div class="bg-image mx-auto">
+                        <img src="icons/sleeping_goal.png" class="w-100" />
+                    </div>
+                    <br>
+                    <p class="text-light"><b>Goals of this category help you</b></p>
+                    <div class="card goals-content">
+                    <p class="card-text text-dark">aquire <b>wellbeing</b>, set and manage your sleep patterns</p>
+                    </div>
+                    <br>
+                    <a href="#" class="btn btn-primary">create goal</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card text-center wgt">
+                <div class="card-body">
+                    <h5 class="card-title">Weight loss</h5>
+                    <!-- image of weight loss -->
+                    <div class="bg-image mx-auto">
+                        <img src="icons/eating_goal.png" class="w-100" />
+                    </div>
+                    <br>
+                    <p class="text-light"><b>Goals of this category help you</b></p>
+                    <div class="card goals-content">
+                    <p class="card-text text-dark">build a <b>healthy lifestyle</b>, set boundaries and regulate <b>calories</b></p>
+                    </div>
+                    <br>
+                    <a href="#" class="btn btn-primary">create goal</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card text-center step">
+                <div class="card-body">
+                    <h5 class="card-title">Steps</h5>
+                    <!-- image of Steps -->
+                    <div class="bg-image mx-auto">
+                        <img src="icons/steps_goal.png" class="w-100" />
+                    </div>
+                    <br>
+                    <p class="text-light"><b>Goals of this category help you</b></p>
+                    <div class="card goals-content">
+                    <p class="card-text text-dark">manage aspects of <b>fitness</b> and <b>physical activity</b>, set a step goal!</p>
+                    </div>
+                    <br>
+                    <a href="#" class="btn btn-primary">create goal</a>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+   
+   
+    </body>
+</html>

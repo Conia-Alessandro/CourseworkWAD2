@@ -4,13 +4,17 @@
 
 //color pallettes
 $active_btn_color: #30BCED;
+$sleep_color : #00008B;
+$healthy_color: #E3B505;
+$steps_color: #62C370;
+$goals_title: white;
 //customized styles
 $primary: $active_btn_color;
 .btn-primary{
     background-color: #6611EE;
 }
 .btn-primary:hover{
-    background-color: #00008B;
+    background-color: $sleep_color;
 }
 .bg-image{
     position: relative;
@@ -42,4 +46,40 @@ $primary: $active_btn_color;
 
 .bg-image .mask .text p{
     margin:0;
+}
+.eepy{  
+    background-color: $sleep_color;
+}
+.eepy .card-title{
+    color:$goals_title;
+}
+.step{
+    background-color: $steps_color;
+}
+.step .card-title{
+    color:$goals_title;
+}
+.wgt{
+    background-color: $healthy_color;
+}
+.wgt .card-title{
+    color:$goals_title;
+}
+.goals-content{
+    background-color: whitesmoke;
+    padding:10px;
+}
+.goal-display-option .btn-secondary{
+    background-color: grey;
+}
+.goal-display-option .btn-check:checked + .btn-secondary{
+    background-color: $active_btn_color;
+    color:black;
+}
+.sub_category_text{
+    width: auto;
+    padding: 5px;
+}
+.form-group{
+    margin-bottom: 10px;
 }

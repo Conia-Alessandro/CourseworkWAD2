@@ -10758,3 +10758,50 @@ textarea.form-control-lg {
 .bg-image .mask .text p {
   margin: 0;
 }
+
+.eepy {
+  background-color: #00008B;
+}
+
+.eepy .card-title {
+  color: white;
+}
+
+.step {
+  background-color: #62C370;
+}
+
+.step .card-title {
+  color: white;
+}
+
+.wgt {
+  background-color: #E3B505;
+}
+
+.wgt .card-title {
+  color: white;
+}
+
+.goals-content {
+  background-color: whitesmoke;
+  padding: 10px;
+}
+
+.goal-display-option .btn-secondary {
+  background-color: grey;
+}
+
+.goal-display-option .btn-check:checked + .btn-secondary {
+  background-color: #30BCED;
+  color: black;
+}
+
+.sub_category_text {
+  width: auto;
+  padding: 5px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}

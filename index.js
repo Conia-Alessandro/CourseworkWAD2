@@ -15,10 +15,10 @@ const pub = path.join(__dirname,'public'); // public dir
 app.use(favicon(path.join(__dirname,'public','images','phone_icon.ico')));
 //link to bootstrap
 app.use('/css', express.static(path.join(node_modules_dir,'bootstrap','dist','css'))); 
-
 app.use('/style',express.static(path.join(pub,"style")));
 app.use('/images',express.static(path.join(pub,"images")));  //use this for images
 app.use('/icons',express.static(path.join(pub,"images","icons")));
+
 //modify the .env file
 require('dotenv').config()
 //cookie parser for security
