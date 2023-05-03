@@ -20,6 +20,9 @@
                 <a class="nav-link active" href="/goals">Goals centre</a>
             </li>
             <li class="nav-item my-auto">
+                <a class="nav-link" href="/newGoal">Manual Goal</a>
+            </li>
+            <li class="nav-item my-auto">
                 <a class="nav-link" href="#">About us</a>
             </li>
         </ul>
@@ -48,23 +51,14 @@
     <body>   
     <div class="card border-0 mx-auto">
         <div class="card-body border-0">
-            <h2 class="text-info">{{user_name}} , what have you in plan for this <a href="#" class="text-primary" style="text-decoration:none;">{{day_name}}?</a></h2>
-            <h4 class="text-secondary">Alternatively to today, you can set Goals for another day! check the Calendar below</h4>
+            <h2 class="text-info">{{user_name}} , what goal have you in plan for this <a href="#" class="text-primary" style="text-decoration:none;">{{day_name}}?</a></h2>
+            <h4 class="text-secondary"><b class="text-success">Don't worry!</b> you'll be able to select a day different from today once selected the typology of Goal</h4>
             <hr class="mx-auto" style="height:2px; width:100%; border-width:0; color:red; background-color:#6611EE">
         </div>
     </div>
     <!-- content -->
-    <!--selectable option -->
-    <div class="btn-group goal-display-option">
-        <input type="radio" class="btn-check" name="repetition_option" id="dayOption" autocomplete="off" checked /> 
-            <label class="btn btn-secondary" for="dayOption">Day Goals</label>
-        <input type="radio" class="btn-check" name="repetition_option" id="weekOption" autocomplete="off" />
-            <label class="btn btn-secondary" for="weekOption">Week Goals</label>
-        <input type="radio" class="btn-check" name="repetition_option" id="monthOption" autocomplete="off" />
-        <label class="btn btn-secondary" for="monthOption">Month Goals</label>
-    </div>
-    <!-- calendar -->
     <!-- goals -->
+    <!-- remove description from here and add it in the welcome page as wireframe shows -->
     <div class="row mx-auto justify-content-center">
         <div class="col-sm-2">
             <div class="card text-center eepy">
@@ -80,7 +74,7 @@
                     <p class="card-text text-dark">aquire <b>wellbeing</b>, set and manage your sleep patterns</p>
                     </div>
                     <br>
-                    <a href="#" class="btn btn-primary">create goal</a>
+                    <a href="/newGoal/{{todays_date}}/sleep" class="btn btn-primary external-link-sleep">create goal</a>
                 </div>
             </div>
         </div>
@@ -98,7 +92,7 @@
                     <p class="card-text text-dark">build a <b>healthy lifestyle</b>, set boundaries and regulate <b>calories</b></p>
                     </div>
                     <br>
-                    <a href="#" class="btn btn-primary">create goal</a>
+                    <a href="/newGoal/{{todays_date}}/health" class="btn btn-primary external-link-health">create goal</a>
                 </div>
             </div>
         </div>
@@ -116,13 +110,11 @@
                     <p class="card-text text-dark">manage aspects of <b>fitness</b> and <b>physical activity</b>, set a step goal!</p>
                     </div>
                     <br>
-                    <a href="#" class="btn btn-primary">create goal</a>
+                    <a href="/newGoal/{{todays_date}}/steps" class="btn btn-primary external-link-steps">create goal</a>
                 </div>
             </div>
         </div>
       </div>
   </div>
-   
-   
     </body>
 </html>

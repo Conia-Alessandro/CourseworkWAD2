@@ -1,0 +1,106 @@
+<html lang="en">
+   <head>
+        {{>modifiedHeader}}
+   </head>
+   <nav class="navbar navbar-expand-md" style="background-color: #ffe4f4;"> <!-- was  #e3f2fd -->
+    <div class="container-fluid">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav me-auto"> <!--was mr -->
+            <a class="navbar-brand" href="#" style="font-size:1.75rem">
+            <img src="../../../images/phone_icon.ico" width="30" height="30" alt="a picture of the Trackfriends logo">
+            TrackFriend
+            </a>
+            <li class="nav-item my-auto">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item my-auto">
+                <a class="nav-link" href="/achievements">Achievements</a>
+            </li>
+            <li class="nav-item my-auto">
+                <a class="nav-link" href="/goals">Goals centre</a>
+            </li>
+            <li class="nav-item my-auto">
+                <a class="nav-link active" href="#">Manual Goal</a>
+            </li>
+            <li class="nav-item my-auto">
+                <a class="nav-link" href="#">About us</a>
+            </li>
+        </ul>
+        </div>
+    <div class="navbar-collapse collapse w-100 order-2 dual-collapse2"> <!-- was order 3 -->
+    <ul class="navbar-nav ms-auto">
+        {{^user}}
+            <li class="nav-item">
+                <a class="nav-link " id="login" href="/login">Sign in</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="btn btn-primary" id="register" href="/register">Register</a> <!-- might remove the btn -->
+            </li> 
+        {{/user}}
+        {{#user}} <!-- if there's a user -->
+            <li class="nav-item">
+                <a class="nav-link btn btn-primary" href="/logout">Sign out</a> <!-- might remove the btn -->
+            </li>
+        {{/user}}
+        </ul>
+        </div>
+        </div> <!--container-->
+    </div>
+</nav>
+    <body>   
+    <div class="card border-0 mx-auto">
+        <div class="card-body border-0">
+            <h2 class="text-info">{{user_name}} , what Goal have you got in plan?</h2>
+            <h4 class="text-secondary">Pick between the options below.</h4>
+            <hr class="mx-auto" style="height:2px; width:100%; border-width:0; color:red; background-color:#6611EE">
+        </div>
+    </div>
+    <!-- content -->
+ 
+      <!-- form for the new goal -->
+    <form action="/newObjective" method="" role="form">
+     <!-- calendar -->
+     <div class="form-group justify-content-center ">
+     <label for="begin">Start of Goal?</label>
+     <input type="date" name="begin" placeholder="dd-mm-yyyy" value="" min="1997-01-01" max="2030-12-31">
+     </div>
+     <div class="form-group">
+     <label for="begin">end of Goal?</label>
+     <input type="date" name="end" placeholder="dd-mm-yyyy" value="" min="1997-01-01" max="2030-12-31">
+     </div>
+     <div class="form-group">
+      <p class="text-info">OR</p>
+     </div>
+       <!--selectable option for frequency of goal-->
+      <div class="form-group">
+      <p class="text-dark">Select from preset? </p>
+      <div class="btn-group goal-display-option">
+        <input type="radio" class="btn-check" name="repetition_option" id="dayOption" autocomplete="off"/> 
+            <label class="btn btn-secondary" for="dayOption">Day</label>
+        <input type="radio" class="btn-check" name="repetition_option" id="weekOption" autocomplete="off" />
+            <label class="btn btn-secondary" for="weekOption">Week</label>
+        <input type="radio" class="btn-check" name="repetition_option" id="monthOption" autocomplete="off" />
+        <label class="btn btn-secondary" for="monthOption">Month</label>
+       </div>
+      </div>
+      <div class="form-group">
+       <p class="text-dark">Goal type? </p>
+     <!--selectable option for Type of goal-->
+     <div class="btn-group goal-display-option">
+        <input type="radio" class="btn-check" name="type_option" id="sleepOption" autocomplete="off" checked /> 
+            <label class="btn btn-secondary" for="sleepOption">Wellbeing</label>
+        <input type="radio" class="btn-check" name="type_option" id="healthOption" autocomplete="off" />
+            <label class="btn btn-secondary" for="healthOption">Health</label>
+        <input type="radio" class="btn-check" name="type_option" id="fitnessOption" autocomplete="off" />
+        <label class="btn btn-secondary" for="fitnessOption">Fitness</label>
+    </div>
+      </div>
+      <input type="submit" class="btn btn-submit" value="create" disabled>
+    </form>
+    
+   
+  
+   
+    </body>
+</html>

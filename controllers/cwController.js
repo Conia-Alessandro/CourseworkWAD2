@@ -196,6 +196,7 @@ exports.goal_page = function (req, res) {
     // the date will be displayed as as DD-MM-YYYY 
     let currentDate = `${currentMonth}/${currentDay}/${currentYear}`;
     let dateuk = `${currentDay}/${currentMonth}/${currentYear}`
+    let formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
     var day = getDayName(currentDate, "en-gb"); //could be en-uk , en-gb works
 
     res.render("user/pages/goals", {
@@ -203,7 +204,7 @@ exports.goal_page = function (req, res) {
         'company_name': companyName,
         'user': req.username,
         'user_name': req.username,
-        'todays_date': dateuk,
+        'todays_date': formattedDate,
         'day_name': day
     })
 }
@@ -240,6 +241,46 @@ exports.modifySpecificGoal = function (req, res) {
         }).catch((err) => {
             console.log('error handling goals entries', err);
         });
+}
+exports.newGoalLanding = function(req,res){
+    console.log('Username: ', req.username);
+    res.render('user/pages/manualnewGoal',{
+        'title':'manual new goal',
+        'company_name':companyName,
+        'user': req.username,
+        'user_name':req.username
+    });
+}
+exports.newGoalLandingSpecific = function(req,res){
+    console.log('Username: ', req.username);
+    let username = req.username;
+    let date = req.params.date; //format that the database likes
+    let type = req.params.type;
+    let dateElements = date.split("-");
+    //`${currentMonth}/${currentDay}/${currentYear}`
+    let type_name;
+    //types: Wellbeing, Health, Fitness
+    if(type =="steps"){
+        type_name ="fitness";
+    }
+    if(type =="sleep"){
+        type_name ="wellbeing";
+    }
+    if(type =="health"){
+        type_name ="health";
+    }
+    let currentDate = `${dateElements[1]}/${dateElements[2]}/${dateElements[0]}`; //format that the function getDayName likes
+    var day = getDayName(currentDate, "en-gb"); 
+    res.render('user/pages/newGoal',{
+        'title':'new goal',
+        'company_name':companyName,
+        'user': username,
+        'user_name':username,
+        'day_name': day,
+        'todays_date': date,
+        'goal_type':type,
+        'goal_type_name':type_name
+    });
 }
 exports.achievements = function (req, res) {
     res.send("<h1>achievements page to be implemented</h1>");
