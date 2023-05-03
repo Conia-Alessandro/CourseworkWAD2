@@ -56,7 +56,7 @@
     {{^weight_info}}
   <div class="alert alert-info alert-dismissible fade show" id="weight_alert">
         <strong>Thank you for registering!</strong> You should consider adding additional information to your profile, such as your weight, please do so at your own time by clicking <a href="/addinfo">Here</a>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" id="closingAlrt"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" id="closingAlert"></button>
     </div>
     {{/weight_info}}
     <!-- content -->
@@ -66,6 +66,13 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Activity overview</h5>
+                <!-- goals == review of goals -->
+                 <ul class="list-group list-group-flush">
+                 
+                {{#goals}}
+                 <li class="list-group-item text-dark">[{{date}}]| Goal of category: <b class="text-success">{{type}}</b>(<b class="text-warning">{{subCategory}}</b>): currently <b class="text-info">{{currentValue}}</b> steps out of <b class="text-primary">{{endValue}}</b></li>
+                {{/goals}}
+                </ul>
                 <!-- no goals == image and create a goal button -->
                 {{^goals}}
                     <div class="bg-image">
@@ -91,10 +98,7 @@
                         <img src="icons/sleep.png" class="w-100" />
                     </div>
                     <br>
-                    <!-- progress bar -->
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 75%">50%</div>
-                    </div>
+                    
                     <br>
                     <a href="#" class="btn btn-primary">modify goals</a>
                 </div>
@@ -109,10 +113,7 @@
                         <img src="icons/weight_loss.png" class="w-100" />
                     </div>
                     <br>
-                    <!-- progress bar -->
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 75%">50%</div>
-                    </div>
+                  
                     <br>
                     <a href="#" class="btn btn-primary">modify goals</a>
                 </div>
@@ -127,19 +128,7 @@
                         <img src="icons/steps.png" class="w-100" />
                     </div>
                     <br>
-                    <!-- progress bar -->
-                    {{#steps_entry}}
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated steps_progress" role="progressbar" aria-valuenow="{{currentValue}}" aria-valuemin="0" aria-valuemax="{{endValue}}" style="width: 75%"></div>
-                    </div>
-                    <a class="text-dark" id="to_steps_goal" href="#" style="text-decoration:none;">{{currentValue}} out of {{endValue}} Steps </a> <p class="text-info">keep going!</p>
-                    {{/steps_entry}}
-                    <!-- no goal entry for steps, shows default -->
-                    {{^steps_entry}}
-                    <div class="progress">
-                        <div id="steps_progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 75%">50%</div>
-                    </div>
-                    {{/steps_entry}}
+                   
                     <br>
                     <a href="/goals/{{todays_date}}/steps" class="btn btn-primary">modify goals</a>
                 </div>
@@ -215,26 +204,15 @@
   </div>
   <!-- Copyright -->
 </footer>
-    <script>
+<script>
     //alert handling
-    let alert_x =document.getElementById("closingAlrt");
+    let alert_x =document.getElementById("closingAlert");
     let alert_element =document.getElementById("weight_alert");
     alert_x.addEventListener("click", function(){
         alert_element.classList.remove("show");
         alert_element.remove();
     })
-    let valuesteps = document.getElementsByClassName("steps_progress")[0];
-    let currentValue = valuesteps.getAttribute("aria-valuenow");
-    let maxValue = valuesteps.getAttribute("aria-valuemax");
-    let percentage = (100 * currentValue)/maxValue +"%";
-    let styleFormat = "width: "+percentage+";"
-    valuesteps.setAttribute("style",styleFormat);
-    valuesteps.innerText = percentage;
 
-    let stepsLabel = document.getElementById("to_steps_goal");
-    let date = document.getElementById("active_date").innerText;
-    link_to_steps = "/goals"+"/"+date+"/"+"steps";
-    stepsLabel.setAttribute("href",link_to_steps);
-    </script>
+</script>
     </body>
 </html>

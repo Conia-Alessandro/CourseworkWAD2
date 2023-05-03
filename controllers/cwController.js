@@ -10,6 +10,22 @@ const pub = path.join(__dirname, 'public'); // public dir
 const bodyParser = require('body-parser');
 const { getUser } = require("../auth/auth");
 
+var steps_entries;
+var sleep_entries;
+var health_entries;
+
+function saveVariable(type,entries){
+    if(type == "steps"){
+        steps_entries = entries;
+    }
+    if(type == "sleep"){
+        sleep_entries = entries;
+    }
+    if(type == "health"){
+        health_entries = entries;
+    }
+}
+
 exports.landing_page = function (req, res) {
     //db.init(); //Initiate DB as the first thing, not needed anymore
     //res.redirect("../public/index.html"); //TODO change to a better looking page, currently this doesn't work
@@ -141,7 +157,7 @@ exports.dashboard = function (req, res) {
     var day = getDayName(currentDate, "en-gb"); //could be en-uk 
     let formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
     //calls database to get the current objectives for the day, then do something with it
- 
+
     goals_db.getUserObjective(req.username,formattedDate)
     .then((list) => {
         //list == entries
@@ -152,7 +168,7 @@ exports.dashboard = function (req, res) {
             'user_name': req.username,
             'todays_date': formattedDate, // dateuk
             'day_name': day,
-            'steps_entry':list
+            'goals':list
         })
     })
     .catch((err) => {
@@ -166,6 +182,8 @@ exports.dashboard = function (req, res) {
             'day_name': day
         })
     });
+
+
 }
 
 exports.goal_page = function (req, res) {
@@ -224,7 +242,7 @@ exports.modifySpecificGoal = function (req, res) {
         });
 }
 exports.achievements = function (req, res) {
-    res.send("<h1>goals page to be implemented</h1>");
+    res.send("<h1>achievements page to be implemented</h1>");
 }
 exports.faq = function (req, res) {
     res.send("<h1>faq to be implemented</h1>");
