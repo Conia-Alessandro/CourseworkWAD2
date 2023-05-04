@@ -10761,6 +10761,7 @@ textarea.form-control-lg {
 
 .eepy {
   background-color: #00008B;
+  color: whitesmoke;
 }
 
 .eepy .card-title {
@@ -10804,4 +10805,54 @@ textarea.form-control-lg {
 
 .form-group {
   margin-bottom: 10px;
+}
+
+.external-link-steps {
+  background-color: #31493C;
+  border-color: #62C370;
+  color: whitesmoke;
+}
+
+.external-link-steps:hover {
+  cursor: pointer;
+  background-color: #62C370;
+  border-color: #31493C;
+  color: whitesmoke;
+}
+
+.external-link-health {
+  background-color: #F17300;
+  border-color: #E3B505;
+  color: whitesmoke;
+}
+
+.external-link-health:hover {
+  cursor: pointer;
+  background-color: #E3B505;
+  border-color: #F17300;
+  color: whitesmoke;
+}
+
+.external-link-sleep {
+  background-color: #6611EE;
+  border-color: #00008B;
+  color: whitesmoke;
+}
+
+.external-link-sleep:hover {
+  cursor: pointer;
+  background-color: #00008B;
+  border-color: #6611EE;
+  color: whitesmoke;
+}
+
+.description_aside {
+  background: whitesmoke;
+  color: black;
+  border: 2px solid #00008B;
+}
+
+.description_aside:hover {
+  cursor: context-menu;
+  border: 3px solid #6611EE;
 }

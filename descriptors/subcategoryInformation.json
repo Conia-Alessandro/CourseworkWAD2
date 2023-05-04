@@ -1,0 +1,127 @@
+{
+    "Wellbeing": [
+      {
+        "subcategory": "sleep",
+        "description": "everyday phisiological sleep best practices and advices",
+        "length": 1,
+        "default_minimum": 7,
+        "default_max": 10,
+        "advices": [
+          {
+            "scheduling": "take in consideration your age and the amount of sleep ideal for your age group, for an adult, the reccomended amount is 7 hours.",
+            "enviroment": "when possible, create a nice resting enviroment, shut the blinds, ensure the room is quiet, shut down electronics and other distractions",
+            "limitNaps": "although useful, make sure to limit the amount of naps you take during the day, as it could cause a feel of tiredness which not even sleep could remove",
+            "manageWorries": "resolve your concerns Before your bedtime, ensure tasks are completed by then, and once in bed stop worrying about them,instead try to count or focus on positive thoughts to fall asleep"
+          }
+        ]
+      },
+      {
+        "subcategory": "rest",
+        "description": "Peaceful ease and refreshment offered by sleep during a period of time, along the advices to achive such status ",
+        "length": 4,
+        "default_minimum": 7,
+        "dafualt_max": 10,
+        "advices": [
+          {
+            "scheduling": "take in consideration your age and the amount of sleep ideal for your age group, for an adult, the reccomended amount is 7 hours. go to bed and wake up at the same time every day for the amount you'd prefer",
+            "diet": "a good diet, along the time between meals during a day influences the quality of your sleep, try eating earlier and better during the week to see result",
+            "enviroment": "when possible, create a nice resting enviroment, shut the blinds, ensure the room is quiet, shut down electronics and other distractions",
+            "takeNaps": "a good mindset comes from taking naps during a week",
+            "takeTimeOuts": "ensure that you take time outs during a week, don't over stress yourself on everyday tasks",
+            "manageWorries": "resolve your concerns Before your bedtime, ensure tasks are completed by then, and once in bed stop worrying about them,instead try to count or focus on positive thoughts to fall asleep"
+          }
+        ]
+      }
+    ],
+    "Nutrition": [
+      {
+        "subcategory": "weight loss",
+        "description": "losing weight based on advice and suggestions",
+        "length": 4,
+        "default_minimum": 500,
+        "default_max": 1800,
+        "advices": [
+          {
+            "caloriesIntake": "decrease calorie intake by 500–750 calories per day, with a low calorie diet of 1,200–1,500 calories per day for adult women and 1,500–1,800 calories per day for adult men",
+            "dontskipBreakfast": "do not skip breakfast, it's the most important meal of the day for a reason, since it gives your body and brain the energy required for the day",
+            "eatRegurarly": "set yourself limits on food, but eat regurarly through the day, eating 5 to 6 times a day is considered normal for adults"
+          }
+        ]
+      }
+    ],
+    "Fitness": [
+      {
+        "subcategory": "physical exercises",
+        "description": "choose between a variety of physical exercises, that help your wellbeing",
+        "length": 4,
+        "default_minimum": 2,
+        "default_max": 10,
+        "exercises": [
+          {
+            "focus": "strength/balance",
+            "name": "knee flexion",
+            "description": "Strengthens muscles in back of thigh",
+            "relevantNotes": "none",
+            "steps": [
+              {
+                "1": "Stand straight holding onto a table or chair for balance and slowly bend knee as far as possible. Don’t move your upper leg at all; bend your knee only.",
+                "2": "Hold position for 1 second. Slowly lower foot all the way back down. Pause",
+                "3": "Repeat with other leg. Alternate legs until you have done 8 to 15 repetitions with each leg. Rest; then do another set of 8 to 15 alternating repetitions"
+              }
+            ]
+          },
+          {
+            "focus": "stretching",
+            "name": "Alternative Hamstrings Stretch",
+            "description": "Stretches muscles in the back of the thigh",
+            "relevantNotes": "none",
+            "steps": [
+              {
+                "1": "Stand behind chair, holding the back of it with both hands.",
+                "2": "Bend forward from the hips (not waist), keeping back and shoulders straight at all times.",
+                "3": "When upper body is parallel to floor, hold position for 10 to 30 seconds. You should feel a stretch in the backs of your thighs.",
+                "4": "Repeat 3 to 5 times."
+              }
+            ]
+          },
+          {
+            "focus": "stretching",
+            "name": "Single Hip Rotation",
+            "description": "Stretches muscles of pelvis and inner thigh",
+            "relevantNotes": "Don’t do this exercise if you have had a hip replacement, unless your surgeon approves.",
+            "steps": [
+              {
+                "1": "Lie on your back on floor, knees bent and feet flat on the floor.",
+                "2": "Keep shoulders on floor throughout exercise.",
+                "3": "Lower one knee slowly to side, keeping the other leg and your pelvis in place.",
+                "4": "Hold position for 10 to 30 seconds. Bring knee back up slowly. Repeat with other knee. Repeat 3 to 5 times on each side."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "subcategory": "cardiovascular physical activity",
+        "description": "set goals for walking, for a day or a week the duration is just indicative and should reflect your commitment",
+        "length": 1,
+        "default_minimum": 6000,
+        "default_maximum": 12000,
+        "presets": [
+          {
+            "walkInAPark": "7000 steps in a park of choice everyday for 3 days",
+            "cityWalk": "6000 steps in a calm area of a city of choice",
+            "travelersRoutine": "at least 8000 steps a day for a week while in vacation to a city different from your own",
+            "MountainClimber": "9 000 steps or higher in a rural area for 3 separate days a week",
+            "MountainExpert": "12 000 steps or higher in a mountain area, only perform if Young adult / middleage."
+          }
+        ],
+        "advices": [
+          {
+            "stayHydrated": "keep yourself hydrated, bring water and drink when needed",
+            "protectFromSun": "keep yourself safe from the sun! put on sunscreen, protect your body form UV lights",
+            "avoidPollutedAreas": "while walking is a good activity to do, please consider avoiding polluted areas of the city"
+          }
+        ]
+      }
+    ]
+  }

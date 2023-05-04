@@ -14,13 +14,13 @@
                 <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link" href="/achievements">Achievements</a>
+                <a class="nav-link" href="/achievements">My Achievements</a>
             </li>
             <li class="nav-item my-auto">
                 <a class="nav-link" href="/goals">Goals centre</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link active" href="#">Manual Goal</a>
+                <a class="nav-link active" href="#">Add Goal</a>
             </li>
             <li class="nav-item my-auto">
                 <a class="nav-link" href="#">About us</a>
@@ -48,7 +48,7 @@
         </div> <!--container-->
     </div>
 </nav>
-    <body>   
+    <body> 
     <div class="card border-0 mx-auto">
         <div class="card-body border-0">
             <h2 class="text-info">{{user_name}} , what Goal have you got in plan?</h2>
@@ -56,50 +56,271 @@
             <hr class="mx-auto" style="height:2px; width:100%; border-width:0; color:red; background-color:#6611EE">
         </div>
     </div>
-    <!-- content -->
- 
-      <!-- form for the new goal -->
-    <form action="/newObjective" method="" role="form">
-     <!-- calendar -->
-     <div class="form-group justify-content-center ">
-     <label for="begin">Start of Goal?</label>
-     <input type="date" name="begin" placeholder="dd-mm-yyyy" value="" min="1997-01-01" max="2030-12-31">
-     </div>
-     <div class="form-group">
-     <label for="begin">end of Goal?</label>
-     <input type="date" name="end" placeholder="dd-mm-yyyy" value="" min="1997-01-01" max="2030-12-31">
-     </div>
-     <div class="form-group">
-      <p class="text-info">OR</p>
-     </div>
-       <!--selectable option for frequency of goal-->
-      <div class="form-group">
-      <p class="text-dark">Select from preset? </p>
-      <div class="btn-group goal-display-option">
-        <input type="radio" class="btn-check" name="repetition_option" id="dayOption" autocomplete="off"/> 
-            <label class="btn btn-secondary" for="dayOption">Day</label>
-        <input type="radio" class="btn-check" name="repetition_option" id="weekOption" autocomplete="off" />
-            <label class="btn btn-secondary" for="weekOption">Week</label>
-        <input type="radio" class="btn-check" name="repetition_option" id="monthOption" autocomplete="off" />
-        <label class="btn btn-secondary" for="monthOption">Month</label>
-       </div>
-      </div>
-      <div class="form-group">
-       <p class="text-dark">Goal type? </p>
-     <!--selectable option for Type of goal-->
-     <div class="btn-group goal-display-option">
-        <input type="radio" class="btn-check" name="type_option" id="sleepOption" autocomplete="off" checked /> 
-            <label class="btn btn-secondary" for="sleepOption">Wellbeing</label>
-        <input type="radio" class="btn-check" name="type_option" id="healthOption" autocomplete="off" />
-            <label class="btn btn-secondary" for="healthOption">Health</label>
-        <input type="radio" class="btn-check" name="type_option" id="fitnessOption" autocomplete="off" />
-        <label class="btn btn-secondary" for="fitnessOption">Fitness</label>
+<!-- row with information test, remove if doesn't work -->
+<div class="row mx-auto justify-content-center">
+<!-- content -->
+<div class="col-sm-3 mx-auto">
+    <div class="card text-center eepy" id="user_goal_choice">
+        <div class="card-body">
+            <h5 class="card-title">Adding a Goal</h5>
+            <!-- form for the new goal -->
+            <form action="/newObjective" method="" role="form">
+            <!-- calendar -->
+                <div class="form-group justify-content-center ">
+                    <label for="begin">Start Date</label>
+                    <input type="date" name="begin" id="goal_start_date" placeholder="dd-mm-yyyy" value="" min="{{todays_date}}" max="2030-12-31" lang="en-GB">
+                </div>
+                <div class="form-group">
+                    <label for="begin">End Date</label>
+                    <input type="date" name="end" id="goal_end_date" placeholder="dd-mm-yyyy" value="" min="{{todays_date}}" max="2030-12-31" lang="en-GB">
+                </div>
+                <div class="form-group">
+                    <p class="text-red">OR</p>
+                    <p class="text-light goal_info_label">Select from preset</p>
+                </div>
+                <!--selectable option for frequency of goal-->  
+                <div class="form-group">
+                    <div class="btn-group goal-display-option">
+                        <input type="radio" class="btn-check" name="repetition_option" id="dayOption" autocomplete="off"/> 
+                        <label class="btn btn-secondary" for="dayOption">Day</label>
+                        <input type="radio" class="btn-check" name="repetition_option" id="weekOption" autocomplete="off" />
+                        <label class="btn btn-secondary" for="weekOption">Week</label>
+                        <input type="radio" class="btn-check" name="repetition_option" id="monthOption" autocomplete="off" />
+                        <label class="btn btn-secondary" for="monthOption">Month</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p class="text-light goal_info_label">Goal type? </p>
+                    <!--selectable option for Type of goal-->
+                    <div class="btn-group goal-display-option">
+                        <input type="radio" class="btn-check" name="type_option" id="sleepOption" autocomplete="off" checked /> 
+                        <label class="btn btn-secondary" for="sleepOption">Wellbeing</label>
+                        <input type="radio" class="btn-check" name="type_option" id="healthOption" autocomplete="off" />
+                        <label class="btn btn-secondary" for="healthOption">Health</label>
+                        <input type="radio" class="btn-check" name="type_option" id="fitnessOption" autocomplete="off" />
+                        <label class="btn btn-secondary" for="fitnessOption">Fitness</label>
+                    </div>
+                </div>
+                <!-- subclass choice -->
+                <div class="form-group">
+                    <label for="subCategoryPicker" class="text-light goal_info_label">Subcategory</label><br>
+                    <!--<input list="subCategoryPicker" value="" class="col-sm-8 custom-select custom-select-sm"> -->
+                    <select id="subCategoryPicker" class="col-sm-9 custom-select custom-select-sm"></select>
+                </div>
+                <div class="form-group">
+                   <label for="goalDescription" class="text-light goal_info_label">Description</label><br>
+                   <textarea id="goalDescription" name="description_area" rows="3" cols="40" placeholder="I want to .."></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-submit" value="create" disabled>
+                </div>
+            </form>
+        </div>
     </div>
-      </div>
-      <input type="submit" class="btn btn-submit" value="create" disabled>
-    </form>
-    
-   
+</div>
+<!--aside -->
+<div class="col-sm-3 mx-auto">
+    <div class="card text-center description_aside" id="goals_description">
+        <div class="card-body">
+            <h5 class="card-title">Contents description</h5>
+            <p class="card-text text-dark">the field "<b class="text-info">Subcategory</b> defines subcategories for Goals,<br>
+            such subcategories will be described down below:
+            </p>
+            <h5><b class="text-info" id="subCategoryName"></h5>
+            <textarea id="subcategoryDescription" name="subDescription" rows="4" cols ="40" placeholder="select a subcategory to learn more" readonly></textarea>
+        </div>
+    </div>
+</div>
+</div> <!-- end of row -->
+<script>
+let choice = document.getElementById("user_goal_choice");
+let label1 = document.getElementsByClassName("goal_info_label")[0];
+let label2 = document.getElementsByClassName("goal_info_label")[1];
+let label3 = document.getElementsByClassName("goal_info_label")[2];
+let label4 = document.getElementsByClassName("goal_info_label")[3];
+let goal_choice = document.getElementsByClassName("goal-display-option")[1];
+let datalist = document.getElementById("subCategoryPicker");
+let jsonAquired;
+let fitnessSub;
+let wellbeinSub;
+let NutritionSub;
+let currentOption = "sleepOption";
+fetch('/descriptors/subcategoryInformation.json')
+    .then((response) => response.json())
+    .then((json) => {
+         //console.log(json);
+        jsonAquired =json;
+        fitnessSub = json.Fitness;
+        wellbeinSub = json.Wellbeing;
+        NutritionSub = json.Nutrition;
+        //console.log(jsonAquired.Fitness[0].subcategory);
+        //always
+    let otherItem =  "Other";
+    var extraOption = document.createElement('option');
+    extraOption.innerText = otherItem;
+    datalist.appendChild(extraOption);
+
+        for( let i = 0 ; i < wellbeinSub.length ; i++){
+            let item =  wellbeinSub[i].subcategory;
+            var option = document.createElement('option');
+            option.innerText = item;
+            option.value = i;
+            datalist.appendChild(option);
+        }
+    });
+
+
+goal_choice.addEventListener("click",(event) =>{
+    if(event.target.id == "sleepOption"){
+        currentOption = event.target.id;
+        choice.classList.add("eepy");
+        choice.classList.remove("wgt");
+        choice.classList.remove("step");
+        label1.classList.remove("text-dark");
+        label1.classList.add("text-light");
+        label2.classList.remove("text-dark");
+        label2.classList.add("text-light");
+        label3.classList.remove("text-dark");
+        label3.classList.add("text-light");
+        label4.classList.remove("text-dark");
+        label4.classList.add("text-light");
+        console.log(wellbeinSub);
+        while (datalist.firstChild) {
+            datalist.removeChild(datalist.lastChild);
+        }
+        //always
+    let otherItem =  "Other";
+    var extraOption = document.createElement('option');
+    extraOption.innerText = otherItem;
+    datalist.appendChild(extraOption);
+        for( let i = 0 ; i < wellbeinSub.length ; i++){
+            let item =  wellbeinSub[i].subcategory;
+            var option = document.createElement('option');
+            option.innerText = item;
+            option.value=i;
+            datalist.appendChild(option);
+        }
+
+    }
+    if(event.target.id== "healthOption"){
+        currentOption = event.target.id;
+     
+        choice.classList.add("wgt");
+        choice.classList.remove("eepy");
+        choice.classList.remove("step");
+        label1.classList.add("text-dark");
+        label1.classList.remove("text-light");
+        label2.classList.add("text-dark");
+        label2.classList.remove("text-light");
+        label3.classList.add("text-dark");
+        label3.classList.remove("text-light");
+        label4.classList.add("text-dark");
+        label4.classList.remove("text-light");
+        console.log(NutritionSub);
+        while (datalist.firstChild) {
+            datalist.removeChild(datalist.lastChild);
+        }
+        //always
+    let otherItem =  "Other";
+    var extraOption = document.createElement('option');
+    extraOption.innerText = otherItem;
+    datalist.appendChild(extraOption);
+        for( let i = 0 ; i < NutritionSub.length ; i++){
+            let item =  NutritionSub[i].subcategory;
+            var option = document.createElement('option');
+            option.innerText = item;
+            option.value=i;
+            datalist.appendChild(option);
+        }
+    }
+    if(event.target.id == "fitnessOption"){
+        currentOption = event.target.id;
+        
+        choice.classList.add("step");
+        choice.classList.remove("eepy");
+        choice.classList.remove("wgt");
+        label1.classList.add("text-dark");
+        label1.classList.remove("text-light");
+        label2.classList.add("text-dark");
+        label2.classList.remove("text-light");
+        label3.classList.add("text-dark");
+        label3.classList.remove("text-light");
+        label4.classList.add("text-dark");
+        label4.classList.remove("text-light");
+        console.log(fitnessSub);
+        while (datalist.firstChild) {
+            datalist.removeChild(datalist.lastChild);
+        }
+        //always
+    let otherItem =  "Other";
+    var extraOption = document.createElement('option');
+    extraOption.innerText = otherItem;
+    datalist.appendChild(extraOption);
+        for( let i = 0 ; i < fitnessSub.length ; i++){
+            let item =  fitnessSub[i].subcategory;
+            var option = document.createElement('option');
+            option.innerText = item;
+            option.value=i;
+            datalist.appendChild(option);
+        }
+    }
+    /*
+    //not necessary anymore at the end
+    let otherItem =  "Other";
+    var extraOption = document.createElement('option');
+    extraOption.innerText = otherItem;
+    datalist.appendChild(extraOption);
+    */
+})
+
+
+//on selection
+datalist.addEventListener("change", (event)=>{
+    let indexText = datalist.options[datalist.selectedIndex].value; // or datalist.value datalist.options[datalist.selectedIndex].value
+    var text = datalist.options[datalist.selectedIndex].innerText;
+    console.log("text: ",text, " index",indexText);
+    let descriptionArea = document.getElementById("subcategoryDescription"); //description of subcategories
+    let category  = document.getElementById("subCategoryName");
+    //Three main categories:
+    // wellbeinSub
+    // NutritionSub
+    // fitnessSub
+//descriptionArea.innerText = wellbeinSub;
+    if(currentOption== "sleepOption"){
+        //text = datalist.options[datalist.selectedIndex].innerText;
+        if(text =="Other"){
+            console.log("nothing to do");
+        }else{
+            descriptionArea.innerText = wellbeinSub[indexText].description;
+            category.innerText = text;
+        }
+        
+    }
+    if(currentOption == "healthOption"){
+        //text = datalist.options[datalist.selectedIndex].innerText;
+        if(text =="Other"){
+            console.log("nothing to do");
+        }else{
+            descriptionArea.innerText = NutritionSub[indexText].description;
+            category.innerText = text;
+        }
+        
+    }
+    if(currentOption =="fitnessOption"){
+        //text = datalist.options[datalist.selectedIndex].innerText;
+        if(text =="Other"){
+            console.log("nothing to do");
+        }else{
+           descriptionArea.innerText = fitnessSub[indexText].description;
+           category.innerText = text;
+        }
+        
+    }
+
+ 
+})
+
+</script>
   
    
     </body>

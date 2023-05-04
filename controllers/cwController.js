@@ -244,11 +244,18 @@ exports.modifySpecificGoal = function (req, res) {
 }
 exports.newGoalLanding = function(req,res){
     console.log('Username: ', req.username);
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    //required allowed format year-month-day
+    today = yyyy + '-' + mm + '-' + dd;
     res.render('user/pages/manualnewGoal',{
         'title':'manual new goal',
         'company_name':companyName,
         'user': req.username,
-        'user_name':req.username
+        'user_name':req.username,
+        'todays_date':today
     });
 }
 exports.newGoalLandingSpecific = function(req,res){

@@ -14,13 +14,13 @@
                 <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link" href="/achievements">Achievements</a>
+                <a class="nav-link" href="/achievements">My Achievements</a>
             </li>
             <li class="nav-item my-auto">
                 <a class="nav-link" href="/goals">Goals centre</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link" href="/newGoal">Manual Goal</a>
+                <a class="nav-link" href="/newGoal">Add Goal</a>
             </li>
             <li class="nav-item my-auto">
                 <a class="nav-link" href="#">About us</a>
@@ -129,7 +129,7 @@
                     <br>
                     {{#steps_goals}}
                     <form action="/updateGoal" method="post" name="form_update" class="justify-content-center"> <!-- updates current value -->
-                    <h3 class="text-light">Your set goal: <b class="text-danger">{{endValue}}</b> steps</h3>
+                    <h3 class="text-light">Your set goal: <b class="text-warning">{{endValue}}</b> steps</h3>
                     <div class="form-group">
                     <label for="subcategorytext" class="text-dark">category</label>
                     <input type="text" name="subcategorytext"class="card-text text-dark sub_category_text text-center"value="{{subCategory}}"disabled><br>
@@ -137,6 +137,10 @@
                     <div class="form-group">
                     <label for="currentSteps" class="text-dark">Current Steps</label>
                     <input type="number" class="text-center" id="current_steps_number" name="currentSteps" min="{{currentValue}}" max="{{endValue}}" value="{{currentValue}}">
+                    </div>
+                    <div class="form-group">
+                    <label for="currentDescription" class="text-dark">Description given</label>
+                    <textarea id="currentDescription" name="description_area" rows="4" cols="40">{{description}}</textarea>
                     </div>
                     <div class="form-group">
                     <input type="submit" value="update" class="btn btn-info">

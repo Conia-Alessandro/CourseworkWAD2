@@ -8,6 +8,10 @@ $sleep_color : #00008B;
 $healthy_color: #E3B505;
 $steps_color: #62C370;
 $goals_title: white;
+
+$submit_health : #F17300;
+$submit_steps: #31493C;
+$submit_sleep : #6611EE;
 //customized styles
 $primary: $active_btn_color;
 .btn-primary{
@@ -49,6 +53,7 @@ $primary: $active_btn_color;
 }
 .eepy{  
     background-color: $sleep_color;
+    color:whitesmoke;
 }
 .eepy .card-title{
     color:$goals_title;
@@ -82,4 +87,46 @@ $primary: $active_btn_color;
 }
 .form-group{
     margin-bottom: 10px;
+}
+.external-link-steps{
+    background-color: $submit_steps;
+    border-color:$steps_color;
+    color:whitesmoke;
+}
+.external-link-steps:hover{
+    cursor:pointer;
+    background-color: $steps_color;
+    border-color:$submit_steps;
+    color:whitesmoke;
+}
+.external-link-health{
+    background-color: $submit_health;
+    border-color:#E3B505;
+    color:whitesmoke;
+}
+.external-link-health:hover{
+    cursor:pointer;
+    background-color: $healthy_color;
+    border-color:$submit_health;
+    color:whitesmoke;
+}
+.external-link-sleep{
+    background-color: $submit_sleep;
+    border-color: $sleep_color;
+    color:whitesmoke;
+}
+.external-link-sleep:hover{
+    cursor:pointer;
+    background-color: $sleep_color;
+    border-color: $submit_sleep;
+    color:whitesmoke;
+}
+.description_aside{
+    background: whitesmoke;
+    color:black;
+    border: 2px solid $sleep_color;
+}
+.description_aside:hover{
+    cursor:context-menu;
+    border: 3px solid $submit_sleep;
 }

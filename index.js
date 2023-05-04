@@ -18,7 +18,7 @@ app.use('/css', express.static(path.join(node_modules_dir,'bootstrap','dist','cs
 app.use('/style',express.static(path.join(pub,"style")));
 app.use('/images',express.static(path.join(pub,"images")));  //use this for images
 app.use('/icons',express.static(path.join(pub,"images","icons")));
-
+app.use('/descriptors',express.static(path.join(pub,"..","descriptors")));
 //modify the .env file
 require('dotenv').config()
 //cookie parser for security

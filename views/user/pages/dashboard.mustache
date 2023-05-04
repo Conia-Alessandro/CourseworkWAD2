@@ -14,13 +14,13 @@
                 <a class="nav-link active" href="/dashboard">Dashboard</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link" href="/achievements">Achievements</a>
+                <a class="nav-link" href="/achievements">My Achievements</a>
             </li>
             <li class="nav-item my-auto">
                 <a class="nav-link" href="/goals">Goals centre</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link" href="/newGoal">Manual Goal</a>
+                <a class="nav-link" href="/newGoal">Add Goal</a>
             </li>
             <li class="nav-item my-auto">
                 <a class="nav-link" href="#">About us</a>
@@ -73,7 +73,7 @@
                  <ul class="list-group list-group-flush">
                  
                 {{#goals}}
-                 <li class="list-group-item text-dark">[{{date}}]| Goal of category: <b class="text-success">{{type}}</b>(<b class="text-warning">{{subCategory}}</b>): currently <b class="text-info">{{currentValue}}</b> steps out of <b class="text-primary">{{endValue}}</b></li>
+                 <li class="list-group-item text-dark">[{{date}}]| Goal of category: <b class="text-success">{{type}}</b>(<b class="text-warning">{{subCategory}}</b>):<br><a href="#">{{description}}</a><br> currently <b class="text-info">{{currentValue}}</b> steps out of <b class="text-primary">{{endValue}}</b></li>
                 {{/goals}}
                 </ul>
                 <!-- no goals == image and create a goal button -->
