@@ -10727,6 +10727,19 @@ textarea.form-control-lg {
   background-color: #00008B;
 }
 
+.submit_goal {
+  background-color: #F17300;
+  color: black;
+  border-color: black;
+}
+
+.submit_goal:hover {
+  cursor: pointer;
+  background-color: black;
+  color: #F17300;
+  border-color: F17300;
+}
+
 .bg-image {
   position: relative;
   overflow: hidden;

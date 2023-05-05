@@ -166,7 +166,7 @@ exports.dashboard = function (req, res) {
             'company_name': companyName,
             'user': req.username,
             'user_name': req.username,
-            'todays_date': formattedDate, // dateuk
+            'todays_date': formattedDate, // although replacable with dateuk, this works with the current database
             'day_name': day,
             'goals':list
         })
@@ -288,6 +288,16 @@ exports.newGoalLandingSpecific = function(req,res){
         'goal_type':type,
         'goal_type_name':type_name
     });
+}
+exports.createNewGoal = function(req,res){
+    console.log("username ",req.username);
+    console.log("initial date: ",req.body.begin);
+    console.log("end date",req.body.end);
+    console.log("goal repetition option ",req.body.repetition_option);
+    console.log("Goal type option", req.body.type_option);
+    console.log("Goal subcategory",req.body.subcategory);
+    console.log("Goal description",req.body.description_area);
+    //length = edd - sdd
 }
 exports.achievements = function (req, res) {
     res.send("<h1>achievements page to be implemented</h1>");

@@ -15,10 +15,21 @@ $submit_sleep : #6611EE;
 //customized styles
 $primary: $active_btn_color;
 .btn-primary{
-    background-color: #6611EE;
+    background-color: $submit_sleep;
 }
 .btn-primary:hover{
     background-color: $sleep_color;
+}
+.submit_goal{
+    background-color: #F17300;
+    color:black;
+    border-color: black;
+}
+.submit_goal:hover{
+    cursor:pointer;
+    background-color: black;
+    color:#F17300;
+    border-color: F17300;
 }
 .bg-image{
     position: relative;

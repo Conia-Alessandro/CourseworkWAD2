@@ -23,6 +23,7 @@ router.get("/goals",verify,controller.goal_page);
 router.get("/goals/:date/:type",verify,controller.modifySpecificGoal);
 //handle new goals
 router.get("/newGoal",verify,controller.newGoalLanding);
+router.post("/newGoal",verify,controller.createNewGoal);
 router.get("/newGoal/:date/:type",verify,controller.newGoalLandingSpecific);
 //post newGoal
 router.get("/achievements",verify,controller.achievements);
