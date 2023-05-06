@@ -125,6 +125,7 @@ exports.post_register = function (req, res) {
 }
 //get for the login page , gets redirected here when not logged in
 exports.existing_user = function (req, res) {
+    
     res.render('user/login', {
         'title': 'Login',
         'company_name': companyName
@@ -198,7 +199,6 @@ exports.goal_page = function (req, res) {
     let dateuk = `${currentDay}/${currentMonth}/${currentYear}`
     let formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
     var day = getDayName(currentDate, "en-gb"); //could be en-uk , en-gb works
-
     res.render("user/pages/goals", {
         'title': 'profile goal page',
         'company_name': companyName,
@@ -234,6 +234,32 @@ exports.modifySpecificGoal = function (req, res) {
                     'day_name': day,
                     'type_steps': true,
                     'steps_goals':entries
+    
+                });
+            }
+            if(type == "health"){
+                res.render('user/pages/modifyagoal', {
+                    'title': 'profile goal page',
+                    'company_name': companyName,
+                    'user': req.username,
+                    'user_name': req.username,
+                    'todays_date': date,
+                    'day_name': day,
+                    'type_health': true,
+                    'health_goals':entries
+    
+                });
+            }
+            if(type == "sleep"){
+                res.render('user/pages/modifyagoal', {
+                    'title': 'profile goal page',
+                    'company_name': companyName,
+                    'user': req.username,
+                    'user_name': req.username,
+                    'todays_date': date,
+                    'day_name': day,
+                    'type_sleep': true,
+                    'sleeping_goals':entries
     
                 });
             }
@@ -290,17 +316,56 @@ exports.newGoalLandingSpecific = function(req,res){
     });
 }
 exports.createNewGoal = function(req,res){
-    console.log("username ",req.username);
-    console.log("initial date: ",req.body.begin);
-    console.log("end date",req.body.end);
-    console.log("goal repetition option ",req.body.repetition_option);
-    console.log("Goal type option", req.body.type_option);
-    console.log("Goal subcategory",req.body.subcategory);
-    console.log("Goal description",req.body.description_area);
-    //length = edd - sdd
+   
+    //formatting dates:
+    let startDate =req.body.begin;
+    let endDate = req.body.end;
+    let start = new Date(startDate);
+    let end = new Date(endDate);
+    let diffTime = Math.abs(end.getTime() - start.getTime());
+    let diffDays = diffTime / (1000 * 3600 * 24); 
+    //console.log("difference in days: ",diffDays);
+    let repetitive = "no";
+    let repetition_option = "no";
+    if(typeof req.body.repetition_option != undefined || req.body.repetition_option !="" ){
+        repetitive = "yes";
+        repetition_option = req.body.repetition_option;
+    }
+   
+    if(typeof req.body.repetition_option === 'undefined' || typeof req.body.repetition_option == undefined){
+        repetitive = "no";
+        repetition_option = "no";
+    }
+   // console.log("repetitive: ",repetitive, " repetition associated: ",repetition_option);
+   //create new goal!
+   goals_db.addObjective(req.username,req.body.type_option,req.body.subcategory,req.body.endValueNumber,req.body.description_area,diffDays,repetitive,repetition_option,startDate,endDate);
+   //res.redirect(`/goals/${startDate}/${type}`);
+   res.redirect("/dashboard");
 }
 exports.achievements = function (req, res) {
-    res.send("<h1>achievements page to be implemented</h1>");
+    //goals_db.init(); //only once for testing
+    console.log("achievements page username: ", req.username);
+    // Date object
+    const date = new Date();
+    let currentDay = String(date.getDate()).padStart(2, '0');
+    let currentMonth = String(date.getMonth() + 1).padStart(2, "0");
+    let currentYear = date.getFullYear();
+    // the date will be displayed as as DD-MM-YYYY 
+    let currentDate = `${currentMonth}/${currentDay}/${currentYear}`;
+    let dateuk = `${currentDay}/${currentMonth}/${currentYear}`
+    var day = getDayName(currentDate, "en-gb"); //could be en-uk 
+    let formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
+    //calls database to get the current objectives for the day, then do something with it
+    //goals_db.getCompletedGoals(username: req.username, completed: true)
+        res.render("user/pages/achievements", {
+            'title': 'user achievements page',
+            'company_name': companyName,
+            'user': req.username,
+            'user_name': req.username,
+            'todays_date': formattedDate,
+            'day_name': day
+        })
+
 }
 exports.faq = function (req, res) {
     res.send("<h1>faq to be implemented</h1>");
@@ -319,12 +384,3 @@ exports.handle_logout = function (req, res) {
 exports.updateAGoal = function (req,res){
     res.send("<h1>update goal to be implemented</h1>");
 }
-/*
-//remove if it doesn't work
-exports.ObjectiveLanding= function (req,res){
-    res.send("<h1> to be implemented</h1>");
-}
-exports.ObjectiveByDateLanding = function(req,res){
-    res.send("<h1> to be implemented</h1>");
-}
-*/

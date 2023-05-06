@@ -10720,11 +10720,15 @@ textarea.form-control-lg {
   }
 }
 .btn-primary {
-  background-color: #6611EE;
+  background-color: #30BCED;
+  border-color: #00008B;
 }
 
 .btn-primary:hover {
+  cursor: pointer;
   background-color: #00008B;
+  border-color: #30BCED;
+  font-weight: bold;
 }
 
 .submit_goal {
@@ -10785,6 +10789,10 @@ textarea.form-control-lg {
   background-color: #62C370;
 }
 
+.fitness {
+  background-color: #30BCED;
+}
+
 .step .card-title {
   color: white;
 }
@@ -10821,15 +10829,15 @@ textarea.form-control-lg {
 }
 
 .external-link-steps {
-  background-color: #31493C;
-  border-color: #62C370;
+  background-color: #00008B;
+  border-color: #30BCED;
   color: whitesmoke;
 }
 
 .external-link-steps:hover {
   cursor: pointer;
-  background-color: #62C370;
-  border-color: #31493C;
+  background-color: #30BCED;
+  border-color: #00008B;
   color: whitesmoke;
 }
 
@@ -10868,4 +10876,19 @@ textarea.form-control-lg {
 .description_aside:hover {
   cursor: context-menu;
   border: 3px solid #6611EE;
+}
+
+.modify_btn {
+  margin-top: 10px;
+  background-color: black;
+  border-color: black;
+  color: yellow;
+}
+
+.modify_btn:hover {
+  color: black;
+  background-color: yellow;
+  font-weight: bold;
+  cursor: pointer;
+  border-color: black;
 }

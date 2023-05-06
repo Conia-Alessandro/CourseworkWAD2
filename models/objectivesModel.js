@@ -85,16 +85,21 @@ class Objectives{
         })
     }
 
-    addObjective(username,type,length,endValue,date){
+    addObjective(username , type , subcategory, endValue, description, length , repetitive , repetition , date, endDate){
        
         var entry = {
             username: username,
             type: type,
+            subcategory:subcategory,
             startValue: 0,
             currentValue: 0,
             endValue: endValue,
+            description:description,
             length:length,
-            date: date,//new Date().toISOString().split('T')[0]
+            repetitive:repetitive,
+            repetition:repetition,
+            date: date,
+            endDate: endDate//new Date().toISOString().split('T')[0]
         }
         console.log('Objective added: ',entry);
         this.db.insert(entry, function(err,doc){

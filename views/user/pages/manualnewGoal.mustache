@@ -95,7 +95,7 @@
                     <div class="btn-group goal-display-option">
                         <input type="radio" class="btn-check" name="type_option" id="sleepOption" autocomplete="off" value="sleep"checked /> 
                         <label class="btn btn-secondary" for="sleepOption">Wellbeing</label>
-                        <input type="radio" class="btn-check" name="type_option" id="healthOption" autocomplete="off" value="weight" />
+                        <input type="radio" class="btn-check" name="type_option" id="healthOption" autocomplete="off" value="health" />
                         <label class="btn btn-secondary" for="healthOption">Health</label>
                         <input type="radio" class="btn-check" name="type_option" id="fitnessOption" autocomplete="off" value="steps" />
                         <label class="btn btn-secondary" for="fitnessOption">Fitness</label>
@@ -110,6 +110,11 @@
                 <div class="form-group">
                    <label for="goalDescription" class="text-light goal_info_label">Description</label><br>
                    <textarea id="goalDescription" name="description_area" rows="3" cols="40" placeholder="I want to .." required></textarea>
+                </div>
+                <div class="form-group">
+                   <label for="goalEndValue" class="text-light goal_info_label">Goal numerical objective?</label>
+                   <p class="text-light goal_info_label" id ="goalEndValueDescription"></p>
+                   <input type="number" name="endValueNumber" id="endValueNumber" min="0" max="" value="0" required>
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-submit submit_goal" value="create" >
@@ -139,8 +144,11 @@ let label1 = document.getElementsByClassName("goal_info_label")[0];
 let label2 = document.getElementsByClassName("goal_info_label")[1];
 let label3 = document.getElementsByClassName("goal_info_label")[2];
 let label4 = document.getElementsByClassName("goal_info_label")[3];
+let label5 = document.getElementsByClassName("goal_info_label")[4];
 let goal_choice = document.getElementsByClassName("goal-display-option")[1];
 let datalist = document.getElementById("subCategoryPicker");
+let goal_description = document.getElementById("goalEndValueDescription"); //changes on different input.
+let goal_endValueNumber = document.getElementById("endValueNumber");
 let jsonAquired;
 let fitnessSub;
 let wellbeinSub;
@@ -155,12 +163,12 @@ fetch('/descriptors/subcategoryInformation.json')
         wellbeinSub = json.Wellbeing;
         NutritionSub = json.Nutrition;
         //console.log(jsonAquired.Fitness[0].subcategory);
-        //always
-    let otherItem =  "Other";
-    var extraOption = document.createElement('option');
-    extraOption.innerText = otherItem;
-    datalist.appendChild(extraOption);
-
+        //always at least once when setting up wellbeing as the first category
+        let otherItem =  "Other";
+        var extraOption = document.createElement('option');
+        extraOption.innerText = otherItem;
+        datalist.appendChild(extraOption);
+        //append the options of subcategories to the default wellbeing cateogry
         for( let i = 0 ; i < wellbeinSub.length ; i++){
             let item =  wellbeinSub[i].subcategory;
             var option = document.createElement('option');
@@ -169,6 +177,8 @@ fetch('/descriptors/subcategoryInformation.json')
             option.value = i;
             datalist.appendChild(option);
         }
+        goal_description.innerText = "it could be for instance the number of Hours you want to sleep , rest or meditate";
+        goal_endValueNumber.setAttribute("max",100); //max 100 hours of wellbeing
     });
 
 
@@ -186,6 +196,8 @@ goal_choice.addEventListener("click",(event) =>{
         label3.classList.add("text-light");
         label4.classList.remove("text-dark");
         label4.classList.add("text-light");
+        label5.classList.remove("text-dark");
+        label5.classList.add("text-light");
         console.log(wellbeinSub);
         while (datalist.firstChild) {
             datalist.removeChild(datalist.lastChild);
@@ -203,7 +215,8 @@ goal_choice.addEventListener("click",(event) =>{
             option.text = item;
             datalist.appendChild(option);
         }
-
+        goal_description.innerText = "it could be for instance the number of Hours you want to sleep , rest or meditate";
+        goal_endValueNumber.setAttribute("max",100); //max 500 hours of wellbeing
     }
     if(event.target.id== "healthOption"){
         currentOption = event.target.id;
@@ -219,6 +232,8 @@ goal_choice.addEventListener("click",(event) =>{
         label3.classList.remove("text-light");
         label4.classList.add("text-dark");
         label4.classList.remove("text-light");
+        label5.classList.add("text-dark");
+        label5.classList.remove("text-light");
         console.log(NutritionSub);
         while (datalist.firstChild) {
             datalist.removeChild(datalist.lastChild);
@@ -236,7 +251,10 @@ goal_choice.addEventListener("click",(event) =>{
             option.text = item;
             datalist.appendChild(option);
         }
+        goal_description.innerText = "it could be for instance the number of calories to loose or intake";
+        goal_endValueNumber.setAttribute("max",5000); //max 5000 kcals for wellbeing
     }
+
     if(event.target.id == "fitnessOption"){
         currentOption = event.target.id;
         
@@ -251,6 +269,8 @@ goal_choice.addEventListener("click",(event) =>{
         label3.classList.remove("text-light");
         label4.classList.add("text-dark");
         label4.classList.remove("text-light");
+        label5.classList.add("text-dark");
+        label5.classList.remove("text-light");
         console.log(fitnessSub);
         while (datalist.firstChild) {
             datalist.removeChild(datalist.lastChild);
@@ -268,6 +288,8 @@ goal_choice.addEventListener("click",(event) =>{
             option.text = item;
             datalist.appendChild(option);
         }
+        goal_description.innerText = "it could be for instance the number of exercises to perform in a day/week";
+        goal_endValueNumber.setAttribute("max",100); //max 100 exercises for fitness
     }
     /*
     //not necessary anymore at the end
@@ -329,6 +351,14 @@ createGoalForm.addEventListener("submit",(event)=>{
     //let indexText = datalist.options[datalist.selectedIndex].value;
     var text = datalist.options[datalist.selectedIndex].innerText;
     datalist.options[datalist.selectedIndex].value = text;
+})
+goal_endValueNumber.addEventListener("input",(event) =>{
+    /*
+    if(goal_endValueNumber.value > goal_endValueNumber.max){
+        alert("the value cannot be more than max, the max value for each category has been preset to avoid this.");
+        goal_endValueNumber.setAttribute("value", goal_endValueNumber.max);
+    }
+    */
 })
 </script>
   

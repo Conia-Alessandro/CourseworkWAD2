@@ -32,7 +32,9 @@ exports.login = function (req, res, next) {
                 next();
             } else {
                 //comparison fail
-                return res.status(403).send();
+                 //remove comparison error and instead render page with "password error" as a parameter
+                //return res.status(403).send();
+                return res.redirect("/login");
             }
         });
     });

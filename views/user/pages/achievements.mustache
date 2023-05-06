@@ -11,10 +11,10 @@
             TrackFriend
             </a>
             <li class="nav-item my-auto">
-                <a class="nav-link active" href="/dashboard">Dashboard</a>
+                <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link" href="/achievements">My Achievements</a>
+                <a class="nav-link active" href="/achievements">My Achievements</a>
             </li>
             <li class="nav-item my-auto">
                 <a class="nav-link" href="/goals">Goals centre</a>
@@ -51,94 +51,55 @@
     <body>   
     <div class="card border-0 mx-auto">
         <div class="card-body border-0 goals_container">
-            <h3 class="card-title border-0"> Welcome back {{user_name}}</h3> <h2 class="text-info">Check your activity for today , <a href="/goals" class="text-primary"style="text-decoration:none;">{{day_name}} {{todays_date}}</a></h2>  
+            <h3 class="card-title border-0"> Hey {{user_name}}, <b class="text-info">Check out your achievements!</b> </h3> 
              <hr class="mx-auto" style="height:2px; width:100%; border-width:0; color:red; background-color:#6611EE">
         </div>
     </div>
-<!-- alert if not having inputted weight info -->
-    {{^weight_info}}
-  <div class="alert alert-info alert-dismissible fade show" id="weight_alert">
-        <strong>Thank you for registering!</strong> You should consider adding additional information to your profile, such as your weight, please do so at your own time by clicking <a href="/addinfo">Here</a>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" id="closingAlert"></button>
-    </div>
-    {{/weight_info}}
+<!-- no achiveemnts, true or false, if false -->
+    {{^any_achivements}}
+    <div class="card">
+  <div class="card-header">
+    Suggestion
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Create goals to get achivements</h5>
+    <p class="card-text"><a href="/newGoal" class="text-primary"style="text-decoration:none;">Sure is quiet here! why don't you create a goal for this {{todays_date}}, {{day_name}}? </a></p>
+    <a href="/newGoal" class="btn btn-primary">Create goal</a>
+  </div>
+</div>
+    {{/any_achivements}}
     <!-- content -->
-    
-    <div class="row">
+    <div class="row mx-auto justify-content-center">
         <div class="col-sm-5">
-            <div class="card">
+            <div class="card text-center">
                 <div class="card-body">
-                    <h5 class="card-title">Activity overview</h5>
-                <!-- goals == review of goals -->
-                 <ul class="list-group list-group-flush">
-                 
-                {{#goals}}
-                 <li class="list-group-item text-dark">[{{date}}]| Goal of category: <b class="text-success goal_type_retrived">{{type}}</b>(<b class="text-warning">{{subcategory}}</b>):<br><a href="#">{{description}}</a><br> Objective currently <b class="text-info">{{currentValue}}</b> out of <b class="text-primary">{{endValue}}</b></li>
-                {{/goals}}
+                    <h5 class="card-title">Your Achievements</h5>
+                <!-- achivements list -->
+                <ul class="list-group list-group-flush">
+                 <!-- add star after achivement ::after -->
+                {{#achievements}}
+                <li class="list-group-item text-dark">Achievement got on {{date}}, of category: <b class="text-success goal_type_retrived">{{type}}</b>(<b class="text-warning">{{subcategory}}</b>):<br><a href="#">{{description}}</a><br> Objective completed with <b class="text-info">{{endValue}}</b> out of the duration of <b class="text-primary">{{endValue}}</b> total days</li>
+                {{/achievements}}
                 </ul>
                 <!-- no goals == image and create a goal button -->
-                {{^goals}}
+                {{^achievements}}
+                <div class="row mx-auto justify-content-center"> <!--justified -->
                     <div class="bg-image">
-                        <img src="images/run_start.jpg" class="w-100" />
+                        <img src="images/achivement_maker.jpg" class="w-100" />
                         <div class="mask">
                             <div class="text">
-                            <p>Start with the right foot, set a goal for today!</p>
+                            <p>It's never too late to get an achivement {{user_name}}</p>
                             </div>
                         </div>
                     </div>
-                
+                </div>
                 <br> <a href="/goals" class="btn btn-primary">Set a goal!</a>
-                {{/goals}}                 
+                
+                {{/achievements}}                 
                 </div>
             </div>
         </div>
-        <div class="col-sm-2">
-            <div class="card text-center">
-                <div class="card-body">
-                    <h5 class="card-title">Wellbeing and sleep</h5>
-                    <!-- image of Sleep -->
-                    <div class="bg-image mx-auto">
-                        <img src="icons/sleep.png" class="w-100" />
-                    </div>
-                    <br>
-                    
-                    <br>
-                    <a href="/goals/{{todays_date}}/sleep" class="btn btn-primary">modify goals</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div class="card text-center">
-                <div class="card-body">
-                    <h5 class="card-title">Health and Diet</h5>
-                    <!-- image of weight loss -->
-                    <div class="bg-image mx-auto">
-                        <img src="icons/weight_loss.png" class="w-100" />
-                    </div>
-                    <br>
-                  
-                    <br>
-                    <a href="/goals/{{todays_date}}/health" class="btn btn-primary">modify goals</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div class="card text-center">
-                <div class="card-body">
-                    <h5 class="card-title">Fitness and Steps</h5>
-                    <!-- image of Steps -->
-                    <div class="bg-image mx-auto">
-                        <img src="icons/steps.png" class="w-100" />
-                    </div>
-                    <br>
-                   
-                    <br>
-                    <a href="/goals/{{todays_date}}/steps" class="btn btn-primary">modify goals</a>
-                </div>
-            </div>
-        </div>
-      </div>
-  </div>
+    </div>
    <footer class="bg-light text-center text-white">
   <!-- Grid container -->
   <div class="container p-4 pb-0">
@@ -208,19 +169,13 @@
   <!-- Copyright -->
 </footer>
 <script>
-    //alert handling
-    let alert_x =document.getElementById("closingAlert");
-    let alert_element =document.getElementById("weight_alert");
-    alert_x.addEventListener("click", function(){
-        alert_element.classList.remove("show");
-        alert_element.remove();
-    })
+    /*
     let goals_container = document.getElementsByClassName("goals_container")[0] //element.childNodes.length
     let goal_types = document.getElementsByClassName("goal_type_retrived");
     for(let i = 0; i< goals_container.childNodes.length; i++){
         //do some
     }
-
+    */
 
 </script>
     </body>

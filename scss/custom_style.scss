@@ -4,6 +4,9 @@
 
 //color pallettes
 $active_btn_color: #30BCED;
+$primary_btn_color: #00008B;
+
+$fitness_color : #30BCED;
 $sleep_color : #00008B;
 $healthy_color: #E3B505;
 $steps_color: #62C370;
@@ -15,10 +18,14 @@ $submit_sleep : #6611EE;
 //customized styles
 $primary: $active_btn_color;
 .btn-primary{
-    background-color: $submit_sleep;
+    background-color: $active_btn_color;
+    border-color:$primary_btn_color;
 }
 .btn-primary:hover{
-    background-color: $sleep_color;
+    cursor: pointer;
+    background-color: $primary_btn_color;
+    border-color:$active_btn_color;
+    font-weight: bold;
 }
 .submit_goal{
     background-color: #F17300;
@@ -72,6 +79,9 @@ $primary: $active_btn_color;
 .step{
     background-color: $steps_color;
 }
+.fitness{
+    background-color: #30BCED;
+}
 .step .card-title{
     color:$goals_title;
 }
@@ -100,14 +110,14 @@ $primary: $active_btn_color;
     margin-bottom: 10px;
 }
 .external-link-steps{
-    background-color: $submit_steps;
-    border-color:$steps_color;
+    background-color: $sleep_color;
+    border-color:$fitness_color;
     color:whitesmoke;
 }
 .external-link-steps:hover{
     cursor:pointer;
-    background-color: $steps_color;
-    border-color:$submit_steps;
+    background-color: $fitness_color;
+    border-color:$sleep_color;
     color:whitesmoke;
 }
 .external-link-health{
@@ -140,4 +150,17 @@ $primary: $active_btn_color;
 .description_aside:hover{
     cursor:context-menu;
     border: 3px solid $submit_sleep;
+}
+.modify_btn{
+    margin-top:10px;
+    background-color: black;
+    border-color: black;
+    color:yellow;
+}
+.modify_btn:hover{
+    color:black;
+    background-color: yellow;
+    font-weight: bold;
+    cursor: pointer;
+    border-color: black;
 }
