@@ -84,7 +84,18 @@ class Objectives{
             })
         })
     }
-
+    updateGoal(goalId,newValue,newDescription){
+        this.db.update({ _id: goalId }, { $set: { currentValue: newValue ,description: newDescription}},{}, function(err){
+            console.log("i am here");
+            if(err) {
+                console.log(err);
+            }else{
+                console.log("updated");
+            }
+        })
+        this.db.persistence.compactDatafile(); //compact to remove the old one
+        console.log("compacted")
+    }   
     addObjective(username , type , subcategory, endValue, description, length , repetitive , repetition , date, endDate){
        
         var entry = {

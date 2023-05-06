@@ -86,6 +86,8 @@
                     <!--  if there's a goal -->
                     {{#sleeping_goals}}
                      <form action="/updateGoal" method="post" name="form_update" class="justify-content-center"> <!-- updates current value -->
+                    <input type="text" name="goalId" id="goalId" value="{{_id}}" hidden>
+                    <input type="text" name="form_category_name" id="form_category_name" value="" hidden>
                     <h3 class="text-light">Your wellbeing set goal: <b class="text-warning">{{endValue}}</b></h3>
                     <div class="form-group">
                     <label for="subcategorytext" class="text-light">subcategory</label>
@@ -98,6 +100,7 @@
                     <div class="form-group">
                     <label for="currentDescription" class="text-light">Description given</label>
                     <textarea id="currentDescription" name="description_area" rows="4" cols="40" required>{{description}}</textarea>
+                    <p class="text-dark">goal set on <b class="text-light">{{date}}</b> , to be completed before <b class="text-light">{{endDate}}</b></p>
                     </div>
                     <div class="form-group" >
                     <label for="completeGoalCheck" class="text-danger">Complete?</label> 
@@ -136,7 +139,9 @@
                     <br>
                     {{#health_goals}}
                     <form action="/updateGoal" method="post" name="form_update" class="justify-content-center"> <!-- updates current value -->
-                    <h3 class="text-light">Your Diet set goal: <b class="text-warning">{{endValue}}</b></h3>
+                    <input type="text" name="goalId" id="goalId" value="{{_id}}" hidden>
+                    <input type="text" name="form_category_name" id="form_category_name" value="" hidden>
+                    <h3 class="text-light">Your Diet set goal: <b class="text-danger">{{endValue}}</b></h3>
                     <div class="form-group">
                     <label for="subcategorytext" class="text-dark">subcategory</label>
                     <input type="text" name="subcategorytext"class="card-text text-dark sub_category_text text-center"value="{{subcategory}}"disabled><br>
@@ -148,6 +153,7 @@
                     <div class="form-group">
                     <label for="currentDescription" class="text-dark">Description given</label>
                     <textarea id="currentDescription" name="description_area" rows="4" cols="40" required>{{description}}</textarea>
+                    <p class="text-dark">goal set on <b class="text-light">{{date}}</b>, to be completed before <b class="text-light">{{endDate}}</b></p>
                     </div>
                      <div class="form-group" >
                     <label for="" class="text-danger">Complete?</label> 
@@ -189,6 +195,8 @@
                     <br>
                     {{#steps_goals}}
                     <form action="/updateGoal" method="post" name="form_update" class="justify-content-center"> <!-- updates current value -->
+                    <input type="text" name="form_category_name" id="form_category_name" value="" hidden>
+                    <input type="text" name="goalId" id="goalId" value="{{_id}}" hidden>
                     <h3 class="text-light">Your Fitness set goal: <b class="text-warning">{{endValue}}</b></h3>
                     <div class="form-group">
                     <label for="subcategorytext" class="text-dark">subcategory</label>
@@ -201,6 +209,7 @@
                     <div class="form-group">
                     <label for="currentDescription" class="text-dark">Description given</label>
                     <textarea id="currentDescription" name="description_area" rows="4" cols="40" required>{{description}}</textarea>
+                    <p class="text-dark">goal set on <b class="text-light">{{date}}</b> , to be completed before <b class="text-light">{{endDate}}</b></p>
                     </div>
                      <div class="form-group" >
                     <label for="" class="text-danger">Complete?</label> 
@@ -235,6 +244,9 @@
    editableSubclasses.setAttribute("size",editableSubclasses.value.length);
 
    let checkComplete = document.getElementById("completeGoalCheck");
+   let goalcategory = document.getElementById("goal_category");
+   let formGoalCategory = document.getElementById("form_category_name");
+   formGoalCategory.setAttribute("value",goalcategory.innerText);
    checkComplete.addEventListener("click", ()=>{
     if(checkComplete.checked){
         alert("WARNING! Checking this completes the goal automatically after clicking update");

@@ -14,18 +14,6 @@ var steps_entries;
 var sleep_entries;
 var health_entries;
 
-function saveVariable(type,entries){
-    if(type == "steps"){
-        steps_entries = entries;
-    }
-    if(type == "sleep"){
-        sleep_entries = entries;
-    }
-    if(type == "health"){
-        health_entries = entries;
-    }
-}
-
 exports.landing_page = function (req, res) {
     //db.init(); //Initiate DB as the first thing, not needed anymore
     //res.redirect("../public/index.html"); //TODO change to a better looking page, currently this doesn't work
@@ -381,6 +369,41 @@ exports.handle_logout = function (req, res) {
         .status(200)
         .redirect("/");
 }
+//once the user updates a goal
 exports.updateAGoal = function (req,res){
-    res.send("<h1>update goal to be implemented</h1>");
+    //required to update:
+    // category 
+    // currentValue  
+    // description
+    let categoryName = req.body.form_category_name;
+    let goalId =req.body.goalId;
+    console.log("goal id: ",goalId);
+    //required checks: 
+    // completed (flag)
+    // completed (if currentvalue == endvalue)
+    //res.send("<h1>update goal to be implemented</h1>");
+    if(categoryName == "Fitness"){
+        //do fitness related update
+        console.log("category is ",categoryName);
+        let newValue = req.body.currentSteps;
+        console.log("modified value is ",newValue);
+        let newDescription =req.body.description_area;
+        console.log("other modified value is: ",newDescription);
+    try{
+        goals_db.updateGoal(goalId,newValue,newDescription);
+        res.redirect("/dashboard"); //notification of success.
+       
+    }catch(error){
+        console.log("error while updating: ",error);
+    }
+        
+    }
+    if(categoryName == "Wellbeing"){
+        //do fitness related update
+
+    }
+    if(categoryName == "Health"){
+        // do health related update
+    }
+   
 }
