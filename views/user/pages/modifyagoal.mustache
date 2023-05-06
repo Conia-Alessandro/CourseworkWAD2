@@ -54,17 +54,17 @@
             <h2 class="text-info">{{user_name}} , which goal would you like to modify for <b class="text-primary">{{day_name}}</b> ({{todays_date}})?</h2>
             <hr class="mx-auto" style="height:2px; width:100%; border-width:0; color:red; background-color:#6611EE">
              {{#type_sleep}}
-            <h3 class="text_info"> you're currently viewing Goals of the category of <b class="text-success">Wellbeing</b></h3>
+            <h3 class="text_info"> you're currently viewing Goals of the category of <b class="text-success" id="goal_category">Wellbeing</b></h3>
             <a class="btn btn-info" href="/goals/{{todays_date}}/health">go to Nutrition</a>
             <a class="btn btn-info" href="/goals/{{todays_date}}/steps">go to Fitness</a>
             {{/type_sleep}}
             {{#type_health}}
-            <h3 class="text_info"> you're currently viewing Goals of the category of <b class="text-success">Nutrition</b></h3>
+            <h3 class="text_info"> you're currently viewing Goals of the category of <b class="text-success" id="goal_category">Nutrition</b></h3>
             <a class="btn btn-info" href="/goals/{{todays_date}}/sleep">go to wellbeing</a>
             <a class="btn btn-info" href="/goals/{{todays_date}}/steps">go to Fitness</a>
             {{/type_health}}
             {{#type_steps}}
-            <h3 class="text_info"> you're currently viewing Goals of the category of <b class="text-success">Fitness</b></h3>
+            <h3 class="text_info"> you're currently viewing Goals of the category of <b class="text-success" id="goal_category">Fitness</b></h3>
             <a class="btn btn-info" href="/goals/{{todays_date}}/sleep">go to wellbeing</a>
             <a class="btn btn-info" href="/goals/{{todays_date}}/health">go to Nutrition</a>
             {{/type_steps}}
@@ -86,18 +86,24 @@
                     <!--  if there's a goal -->
                     {{#sleeping_goals}}
                      <form action="/updateGoal" method="post" name="form_update" class="justify-content-center"> <!-- updates current value -->
-                    <h3 class="text-light">Your set goal: <b class="text-warning">{{endValue}}</b> hours of sleep</h3>
+                    <h3 class="text-light">Your wellbeing set goal: <b class="text-warning">{{endValue}}</b></h3>
                     <div class="form-group">
                     <label for="subcategorytext" class="text-light">subcategory</label>
                     <input type="text" name="subcategorytext"class="card-text text-dark sub_category_text text-center"value="{{subcategory}}"disabled><br>
                     </div>
                     <div class="form-group">
-                    <label for="currentSleep" class="text-light">Current Sleep recorded</label>
+                    <label for="currentSleep" class="text-light">Current wellbeing recorded</label>
                     <input type="number" class="text-center" id="current_sleep_number" name="currentSleep" min="{{currentValue}}" max="{{endValue}}" value="{{currentValue}}" required>
                     </div>
                     <div class="form-group">
                     <label for="currentDescription" class="text-light">Description given</label>
                     <textarea id="currentDescription" name="description_area" rows="4" cols="40" required>{{description}}</textarea>
+                    </div>
+                    <div class="form-group" >
+                    <label for="completeGoalCheck" class="text-danger">Complete?</label> 
+                    <div class="form-check form-switch d-flex justify-content-center">
+                    <input class="form-check-input" type="checkbox" role="switch" id="completeGoalCheck">
+                    </div>
                     </div>
                     <div class="form-group">
                     <input type="submit" value="update goal" class="btn btn-info">
@@ -109,7 +115,8 @@
                     <!-- description if there's any goals -->
                     {{^sleeping_goals}}
                     <div class="card goals-content">
-                    <p class="card-text text-secondary">You currently don't have any goals set for this category</p>
+                    <p class="card-text text-secondary">You currently don't have any goals set for this category on this date</p>
+                    <a href="/newGoal" class="btn btn-primary external-link-sleep">create goal</a>
                     </div>
                     {{/sleeping_goals}}
                    
@@ -129,18 +136,24 @@
                     <br>
                     {{#health_goals}}
                     <form action="/updateGoal" method="post" name="form_update" class="justify-content-center"> <!-- updates current value -->
-                    <h3 class="text-light">Your set goal: <b class="text-warning">{{endValue}}</b>Health</h3>
+                    <h3 class="text-light">Your Diet set goal: <b class="text-warning">{{endValue}}</b></h3>
                     <div class="form-group">
                     <label for="subcategorytext" class="text-dark">subcategory</label>
                     <input type="text" name="subcategorytext"class="card-text text-dark sub_category_text text-center"value="{{subcategory}}"disabled><br>
                     </div>
                     <div class="form-group">
-                    <label for="currentDiet" class="text-dark">Current KCAL lost in the Goals diet</label>
+                    <label for="currentDiet" class="text-dark">Current diet value</label>
                     <input type="number" class="text-center" id="current_Diet_number" name="currentDiet" min="{{currentValue}}" max="{{endValue}}" value="{{currentValue}}" required>
                     </div>
                     <div class="form-group">
                     <label for="currentDescription" class="text-dark">Description given</label>
                     <textarea id="currentDescription" name="description_area" rows="4" cols="40" required>{{description}}</textarea>
+                    </div>
+                     <div class="form-group" >
+                    <label for="" class="text-danger">Complete?</label> 
+                    <div class="form-check form-switch d-flex justify-content-center">
+                    <input class="form-check-input" type="checkbox" role="switch" id="completeGoalCheck">
+                    </div>
                     </div>
                     <div class="form-group">
                     <input type="submit" value="update goal" class="btn btn-info">
@@ -152,7 +165,8 @@
                     <!-- description if there's no goals -->
                     {{^health_goals}}
                     <div class="card goals-content">
-                    <p class="card-text text-secondary">You currently don't have any goals set for this category</p>
+                    <p class="card-text text-secondary">You currently don't have any goals set for this category on this date</p>
+                    <a href="/newGoal" class="btn btn-primary external-link-health">create goal</a>
                     </div>
                     {{/health_goals}}
                     
@@ -175,18 +189,24 @@
                     <br>
                     {{#steps_goals}}
                     <form action="/updateGoal" method="post" name="form_update" class="justify-content-center"> <!-- updates current value -->
-                    <h3 class="text-light">Your set goal: <b class="text-warning">{{endValue}}</b> for Fitness</h3>
+                    <h3 class="text-light">Your Fitness set goal: <b class="text-warning">{{endValue}}</b></h3>
                     <div class="form-group">
                     <label for="subcategorytext" class="text-dark">subcategory</label>
                     <input type="text" name="subcategorytext"class="card-text text-dark sub_category_text text-center"value="{{subcategory}}"disabled><br>
                     </div>
                     <div class="form-group">
-                    <label for="currentSteps" class="text-dark">Current Steps</label>
+                    <label for="currentSteps" class="text-dark">Current value</label>
                     <input type="number" class="text-center" id="current_steps_number" name="currentSteps" min="{{currentValue}}" max="{{endValue}}" value="{{currentValue}}" required>
                     </div>
                     <div class="form-group">
                     <label for="currentDescription" class="text-dark">Description given</label>
                     <textarea id="currentDescription" name="description_area" rows="4" cols="40" required>{{description}}</textarea>
+                    </div>
+                     <div class="form-group" >
+                    <label for="" class="text-danger">Complete?</label> 
+                    <div class="form-check form-switch d-flex justify-content-center">
+                    <input class="form-check-input" type="checkbox" role="switch" id="completeGoalCheck">
+                    </div>
                     </div>
                     <div class="form-group">
                     <input type="submit" value="update" class="btn btn-info">
@@ -198,7 +218,8 @@
                     <!-- description if there's no goals -->
                     {{^steps_goals}}
                     <div class="card goals-content">
-                    <p class="card-text text-secondary">You currently don't have any goals set for this category</p>
+                    <p class="card-text text-secondary">You currently don't have any goals set for this category on this date</p>
+                    <a href="/newGoal" class="btn btn-primary external-link-steps">create goal</a>
                     </div>
                     {{/steps_goals}}
                     
@@ -212,6 +233,47 @@
    <script>
    let editableSubclasses = document.getElementsByClassName("sub_category_text")[0];
    editableSubclasses.setAttribute("size",editableSubclasses.value.length);
+
+   let checkComplete = document.getElementById("completeGoalCheck");
+   checkComplete.addEventListener("click", ()=>{
+    if(checkComplete.checked){
+        alert("WARNING! Checking this completes the goal automatically after clicking update");
+        let goal_category = document.getElementById("goal_category");
+        let goal;
+        if(goal_category.innerText =="Wellbeing"){
+            //wellbeing goals
+            goal = document.getElementById("current_sleep_number");
+            goal.setAttribute("value",goal.getAttribute("max"));
+        }
+        if(goal_category.innerText =="Health"){
+            //wellbeing goals
+            goal = document.getElementById("current_Diet_number");
+            goal.setAttribute("value",goal.getAttribute("max"));
+        }
+        if(goal_category.innerText =="Fitness"){
+            //wellbeing goals
+            goal = document.getElementById("current_steps_number");
+            goal.setAttribute("value",goal.getAttribute("max"));
+        }
+
+    }else{
+        if(goal_category.innerText =="Wellbeing"){
+            //wellbeing goals
+            goal = document.getElementById("current_sleep_number");
+            goal.setAttribute("value",goal.getAttribute("min"));
+        }
+         if(goal_category.innerText =="Health"){
+            //wellbeing goals
+            goal = document.getElementById("current_Diet_number");
+            goal.setAttribute("value",goal.getAttribute("min"));
+        }
+        if(goal_category.innerText =="Fitness"){
+            //wellbeing goals
+            goal = document.getElementById("current_steps_number");
+            goal.setAttribute("value",goal.getAttribute("min"));
+        }
+    }
+   })
    </script>
    
     </body>

@@ -99,7 +99,8 @@ class Objectives{
             repetitive:repetitive,
             repetition:repetition,
             date: date,
-            endDate: endDate//new Date().toISOString().split('T')[0]
+            endDate: endDate ,
+            completed : false  //by default false
         }
         console.log('Objective added: ',entry);
         this.db.insert(entry, function(err,doc){
