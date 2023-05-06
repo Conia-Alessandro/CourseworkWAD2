@@ -100,7 +100,7 @@
                     <div class="form-group">
                     <label for="currentDescription" class="text-light">Description given</label>
                     <textarea id="currentDescription" name="description_area" rows="4" cols="40" required>{{description}}</textarea>
-                    <p class="text-dark">goal set on <b class="text-light">{{date}}</b> , to be completed before <b class="text-light">{{endDate}}</b></p>
+                    <p class="text-light">goal set on <b class="text-light">{{date}}</b> , to be completed before <b class="text-light">{{endDate}}</b></p>
                     </div>
                     <div class="form-group" >
                     <label for="completeGoalCheck" class="text-danger">Complete?</label> 
@@ -113,7 +113,10 @@
                     </div>
                     </form>
                     <br>
-                    <a href="/deleteGoal" class="btn btn-danger">Remove this goal</a>
+                      <form action="/deleteGoal" method="post">
+                      <input type="text" name="goal_to_delete" id="goalId_to_delete" value="{{_id}}" hidden>
+                    <input type="submit" value="Remove this goal" class="btn btn-danger">
+                    </form>
                     {{/sleeping_goals}}
                     <!-- description if there's any goals -->
                     {{^sleeping_goals}}
@@ -166,7 +169,10 @@
                     </div>
                     </form>
                     <br>
-                    <a href="/deleteGoal" class="btn btn-danger">Remove this goal</a>
+                     <form action="/deleteGoal" method="post">
+                     <input type="text" name="goal_to_delete" id="goalId_to_delete" value="{{_id}}" hidden>
+                    <input type="submit" value="Remove this goal" class="btn btn-danger">
+                    </form>
                     {{/health_goals}}
                     <!-- description if there's no goals -->
                     {{^health_goals}}
@@ -222,7 +228,10 @@
                     </div>
                     </form>
                     <br>
-                    <a href="/deleteGoal" class="btn btn-danger">Remove this goal</a>
+                    <form action="/deleteGoal" method="post">
+                    <input type="text" name="goal_to_delete" id="goalId_to_delete" value="{{_id}}" hidden>
+                    <input type="submit" value="Remove this goal" class="btn btn-danger">
+                    </form>
                     {{/steps_goals}}
                     <!-- description if there's no goals -->
                     {{^steps_goals}}

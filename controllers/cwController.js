@@ -375,6 +375,7 @@ exports.updateAGoal = function (req,res){
     // category 
     // currentValue  
     // description
+    // completed 
     let categoryName = req.body.form_category_name;
     let goalId =req.body.goalId;
     console.log("goal id: ",goalId);
@@ -384,14 +385,13 @@ exports.updateAGoal = function (req,res){
     //res.send("<h1>update goal to be implemented</h1>");
     if(categoryName == "Fitness"){
         //do fitness related update
-        console.log("category is ",categoryName);
         let newValue = req.body.currentSteps;
         console.log("modified value is ",newValue);
         let newDescription =req.body.description_area;
         console.log("other modified value is: ",newDescription);
     try{
         goals_db.updateGoal(goalId,newValue,newDescription);
-        res.redirect("/dashboard"); //notification of success.
+        res.redirect("/dashboard"); //if successful
        
     }catch(error){
         console.log("error while updating: ",error);
@@ -399,11 +399,39 @@ exports.updateAGoal = function (req,res){
         
     }
     if(categoryName == "Wellbeing"){
-        //do fitness related update
-
+        //do wellbeing related update
+        let newValue = req.body.currentSleep;
+        let newDescription =req.body.description_area;
+        try{
+            goals_db.updateGoal(goalId,newValue,newDescription);
+            res.redirect("/dashboard"); 
+           
+        }catch(error){
+            console.log("error while updating: ",error);
+        }
     }
-    if(categoryName == "Health"){
+    if(categoryName == "Nutrition"){
         // do health related update
+        let newValue = req.body.currentDiet;
+        let newDescription = req.body.description_area;
+        try{
+            goals_db.updateGoal(goalId,newValue,newDescription);
+            res.redirect("/dashboard"); 
+           
+        }catch(error){
+            console.log("error while updating: ",error);
+        }
     }
    
+}
+exports.deleteSpecificGoal = function (req,res){
+    //required to delete
+    // _id
+
+    let goalId =req.body.goal_to_delete;
+    console.log("goal id: ",goalId);
+    //required checks: 
+    //goal exist, but that's done by the db
+    goals_db.deleteAGoal(goalId);
+    res.redirect('/dashboard');
 }

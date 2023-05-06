@@ -86,16 +86,26 @@ class Objectives{
     }
     updateGoal(goalId,newValue,newDescription){
         this.db.update({ _id: goalId }, { $set: { currentValue: newValue ,description: newDescription}},{}, function(err){
-            console.log("i am here");
             if(err) {
-                console.log(err);
+                console.log("error while updating" ,err);
             }else{
-                console.log("updated");
+                console.log("Goal updated");
             }
         })
         this.db.persistence.compactDatafile(); //compact to remove the old one
-        console.log("compacted")
+        console.log("DB compacted");
     }   
+    deleteAGoal(goalId){
+        this.db.remove({ _id: goalId },{}, function(err, numRemoved){
+            if(err){
+                console.log("error while deleting, ",err);
+            }else{
+                console.log(numRemoved, " Goal Deleted");
+            }
+        })
+        this.db.persistence.compactDatafile(); //compact to remove both of them
+        console.log("DB compacted");
+    }
     addObjective(username , type , subcategory, endValue, description, length , repetitive , repetition , date, endDate){
        
         var entry = {
