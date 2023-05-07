@@ -2,51 +2,50 @@
    <head>
         {{>modifiedHeader}}
    </head>
-   <nav class="navbar navbar-expand-md" style="background-color: #ffe4f4;"> <!-- was  #e3f2fd -->
-    <div class="container-fluid">
-    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-        <ul class="navbar-nav me-auto"> <!--was mr -->
-            <a class="navbar-brand" href="#" style="font-size:1.75rem">
-            <img src="../../../images/phone_icon.ico" width="30" height="30" alt="a picture of the Trackfriends logo">
-            TrackFriend
-            </a>
-            <li class="nav-item my-auto">
-                <a class="nav-link" href="/dashboard">Dashboard</a>
-            </li>
-            <li class="nav-item my-auto">
-                <a class="nav-link" href="/achievements">My Achievements</a>
-            </li>
-            <li class="nav-item my-auto">
-                <a class="nav-link" href="/goals">Goals centre</a>
-            </li>
-            <li class="nav-item my-auto">
-                <a class="nav-link" href="/newGoal/{{todays_date}}/wellbeing">Add Goal</a>
-            </li>
-            <li class="nav-item my-auto">
-                <a class="nav-link" href="#">About us</a>
-            </li>
-        </ul>
-        </div>
-    <div class="navbar-collapse collapse w-100 order-2 dual-collapse2"> <!-- was order 3 -->
-    <ul class="navbar-nav ms-auto">
+   <nav class="navbar navbar-expand-md navbar-light sticky-top" style="background-color: #ffe4f4;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="font-size: 1.75rem;">
+      <img src="../../../images/phone_icon.ico" width="30" height="30" alt="a picture of the Trackfriends logo">
+      TrackFriend
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/achievements">Achievements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/goals">Goals centre</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="/newGoal/{{todays_date}}/wellbeing">Add Goal</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About us</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
         {{^user}}
-            <li class="nav-item">
-                <a class="nav-link " id="login" href="/login">Sign in</a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="btn btn-primary" id="register" href="/register">Register</a> <!-- might remove the btn -->
-            </li> 
+        <li class="nav-item">
+          <a class="nav-link active" id="login" href="/login">Sign in</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-primary" id="register" href="/register">Register</a>
+        </li>
         {{/user}}
-        {{#user}} <!-- if there's a user -->
-            <li class="nav-item">
-                <a class="nav-link btn btn-primary" href="/logout">Sign out</a> <!-- might remove the btn -->
-            </li>
+        {{#user}}
+        <li class="nav-item">
+          <a class="nav-link btn btn-primary" href="/logout">Sign out</a>
+        </li>
         {{/user}}
-        </ul>
-        </div>
-        </div> <!--container-->
+      </ul>
     </div>
+  </div>
 </nav>
     <body>   
     <div class="card border-0 mx-auto">
