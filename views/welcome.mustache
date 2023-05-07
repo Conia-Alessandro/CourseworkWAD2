@@ -25,9 +25,17 @@
         <li class="nav-item">
           <a class="nav-link" href="/goals">Goals centre</a>
         </li>
-        <li class="nav-item">
+        
+         {{^user}}
+       <li class="nav-item">
           <a class="nav-link" href="/about">About us</a>
         </li>
+        {{/user}}
+         {{#user}}
+          <li class="nav-item">
+          <a class="nav-link" href="/info">About us</a>
+        </li>
+        {{/user}}
       </ul>
       <ul class="navbar-nav ms-auto">
         {{^user}}

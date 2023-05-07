@@ -8,17 +8,13 @@ const goals_db = new goalsDAO(path.join(__dirname,'..','databases','goals.db'));
 const companyName = "TrackFriend";
 const pub = path.join(__dirname, 'public'); // public dir
 const bodyParser = require('body-parser');
-const { getUser } = require("../auth/auth");
-
-var steps_entries;
-var sleep_entries;
-var health_entries;
 
 exports.landing_page = function (req, res) {
     //db.init(); //Initiate DB as the first thing, not needed anymore
     //res.redirect("../public/index.html"); //TODO change to a better looking page, currently this doesn't work
     //res.sendFile(`C:\\Users\\39328\\Desktop\\WAD2\\CourseworkWAD2\\public\\index.html`);
     //res.sendFile(path.join(__dirname,"..","public","index.html"));
+    console.log("username at home: ",req.username);
     res.render('welcome', {
         'title': 'Home',
         'company_name': companyName,
@@ -26,9 +22,11 @@ exports.landing_page = function (req, res) {
     });
 }
 exports.about_us = function (req, res) {
+    console.log("username at about: ",req.username);
     res.render('aboutUs', {
         'title': 'About Us',
-        'company_name': companyName
+        'company_name': companyName,
+        'user': req.username
     })
 }
 exports.show_users = function (req, res) {

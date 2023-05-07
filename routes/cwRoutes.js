@@ -18,6 +18,8 @@ router.get("/login",controller.existing_user);
 router.post("/login",login,controller.post_login)
 
 //login blocked pages:
+router.get("/home",verify,controller.landing_page);
+router.get("/info",verify,controller.about_us);
 router.get("/dashboard",verify,controller.dashboard);
 router.get("/goals",verify,controller.goal_page);
 router.get("/goals/:date/:type",verify,controller.modifySpecificGoal);
