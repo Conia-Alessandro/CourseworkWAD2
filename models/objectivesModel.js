@@ -46,7 +46,7 @@ class Objectives{
     //view objectives on a date
     getUserObjective(username,date){
         return new Promise((resolve,reject)=>{
-            this.db.find({username : username,date:date}, function(err,entries){
+            this.db.find({username : username,date:date,completed:false}, function(err,entries){
                 if(err){
                     reject(err);
                 }else{
@@ -59,7 +59,7 @@ class Objectives{
     //view a specific objective on date and type
     getUserObjectiveonType(username,date,type){
         return new Promise((resolve,reject)=>{
-            this.db.find({username : username,date:date,type:type}, function(err,entries){
+            this.db.find({username : username,date:date,type:type,completed:false}, function(err,entries){
                 if(err){
                     reject(err);
                 }else{
@@ -95,6 +95,18 @@ class Objectives{
         this.db.persistence.compactDatafile(); //compact to remove the old one
         console.log("DB compacted");
     }   
+    //goal becomes achievement
+    upgradeGoalToAchievement(goalId,newValue,newDescription,completion,dateCompleted){
+        this.db.update({ _id: goalId }, { $set: { currentValue: newValue ,description: newDescription, completed:completion, completedOn:dateCompleted}},{}, function(err){
+            if(err) {
+                console.log("error while making goal into achievement" ,err);
+            }else{
+                console.log("Goal upgraded to achievement");
+            }
+        })
+        this.db.persistence.compactDatafile(); //compact to remove the old one
+        console.log("DB compacted");
+    }
     deleteAGoal(goalId){
         this.db.remove({ _id: goalId },{}, function(err, numRemoved){
             if(err){

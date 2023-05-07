@@ -371,10 +371,19 @@ exports.updateAGoal = function (req,res){
     let categoryName = req.body.form_category_name;
     let goalId =req.body.goalId;
     console.log("goal id: ",goalId);
-    //required checks: 
-    // completed (flag)
-    // completed (if currentvalue == endvalue)
-    //res.send("<h1>update goal to be implemented</h1>");
+    const date = new Date();
+    let currentDay = String(date.getDate()).padStart(2, '0');
+    let currentMonth = String(date.getMonth() + 1).padStart(2, "0");
+    let currentYear = date.getFullYear();
+    // the date will be displayed as as DD-MM-YYYY 
+    let formattedTodaysDate = `${currentYear}-${currentMonth}-${currentDay}`;
+
+    let checkedCompleted = req.body.completedCheck; //should give true or false
+    if(checkedCompleted === 'undefined'|| checkedCompleted == undefined){
+        checkedCompleted = false;
+    }else{
+        checkedCompleted = true;
+    }
     if(categoryName == "Fitness"){
         //do fitness related update
         let newValue = req.body.currentSteps;
@@ -382,8 +391,15 @@ exports.updateAGoal = function (req,res){
         let newDescription =req.body.description_area;
         console.log("other modified value is: ",newDescription);
     try{
-        goals_db.updateGoal(goalId,newValue,newDescription);
-        res.redirect("/dashboard"); //if successful
+        if(checkedCompleted == false){
+            //if not completed
+            goals_db.updateGoal(goalId,newValue,newDescription);
+            res.redirect("/dashboard"); //if successful
+        }else{
+            goals_db.upgradeGoalToAchievement(goalId,newValue,newDescription,checkedCompleted,formattedTodaysDate);
+            res.redirect("/dashboard"); //if successful
+        }
+       
        
     }catch(error){
         console.log("error while updating: ",error);
@@ -395,8 +411,14 @@ exports.updateAGoal = function (req,res){
         let newValue = req.body.currentSleep;
         let newDescription =req.body.description_area;
         try{
-            goals_db.updateGoal(goalId,newValue,newDescription);
-            res.redirect("/dashboard"); 
+            if(checkedCompleted == false){
+                //if not completed
+                goals_db.updateGoal(goalId,newValue,newDescription);
+                res.redirect("/dashboard"); //if successful
+            }else{
+                goals_db.upgradeGoalToAchievement(goalId,newValue,newDescription,checkedCompleted,formattedTodaysDate);
+                res.redirect("/dashboard"); //if successful
+            }
            
         }catch(error){
             console.log("error while updating: ",error);
@@ -407,8 +429,14 @@ exports.updateAGoal = function (req,res){
         let newValue = req.body.currentDiet;
         let newDescription = req.body.description_area;
         try{
-            goals_db.updateGoal(goalId,newValue,newDescription);
-            res.redirect("/dashboard"); 
+            if(checkedCompleted == false){
+                //if not completed
+                goals_db.updateGoal(goalId,newValue,newDescription);
+                res.redirect("/dashboard"); //if successful
+            }else{
+                goals_db.upgradeGoalToAchievement(goalId,newValue,newDescription,checkedCompleted,formattedTodaysDate);
+                res.redirect("/dashboard"); //if successful
+            } 
            
         }catch(error){
             console.log("error while updating: ",error);
