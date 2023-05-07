@@ -33,20 +33,29 @@ The application has some dependencies
 ### run the application
 >the command `node index` runs the application, connects to the dbs provided and opens at port 3001 (or alternatively Process.env.PORT), from here, a browser at the address `http://localhost:3001/` is necessary to view the first landing page `/`
 ## User Scenario
+
 for this application, a user scenario of an expected user would be:
+
 ###1: view the homepage, click the links
 >the result of this action would be mostly "login locked" pages, which would prompt the user to register. however, if the user were to go to the "About us" page, he would be please to see information of the application.
+
 ###2: Register
 >the blocked pages would prompt the user to register, an username and password is required, so the user registers. Once registerd, the user can login automatically through redirect.
+
 ###3: login
 >the user now logs in, it sees the dashboard and is now briefed on the functionality available, an user can now create a goal and view it on the dashboard, or could navigate around the newly unlocked pages
+
 ###4: create a goal
 >the user creates a goal , this gets stored, and through a redirect to the dashboard, the user sees the goal being stored
+
 ###5: modify goal
 >the user might now modify the goal, and update it to either be completed, or just modified.
+
 ###6: delete a goal / complete a goal
 >the user could now delete or complete the goal, depending on what they want to do.
+
 ###7: view an achievement
 >assuming that the user has now completed a goal, the achivement page will display it once the user has clicked on it.
+
 ###8: log out
 >once satisfied with today, the user clicks to log out and is able to do so. End of user Scenario
