@@ -8,7 +8,7 @@ This is performed by users , as they add goals through the usage of the applicat
 The application has been made to be responsive on phones and follow a standard in colors / fonts.
 A database which stores Goals and Users has been provided to visualize how an in real life application of this scale would act.
 
-##Purpose
+## Purpose
 the purpose of the application is for user to register easily, log-in, and once logged in permit the following actions:
 >the creation of goals and them being visible
 >the update of goals
@@ -36,26 +36,26 @@ The application has some dependencies
 
 for this application, a user scenario of an expected user would be:
 
-###1: view the homepage, click the links
+### 1: view the homepage, click the links
 >the result of this action would be mostly "login locked" pages, which would prompt the user to register. however, if the user were to go to the "About us" page, he would be please to see information of the application.
 
-###2: Register
+### 2: Register
 >the blocked pages would prompt the user to register, an username and password is required, so the user registers. Once registerd, the user can login automatically through redirect.
 
-###3: login
+### 3: login
 >the user now logs in, it sees the dashboard and is now briefed on the functionality available, an user can now create a goal and view it on the dashboard, or could navigate around the newly unlocked pages
 
-###4: create a goal
+### 4: create a goal
 >the user creates a goal , this gets stored, and through a redirect to the dashboard, the user sees the goal being stored
 
-###5: modify goal
+### 5: modify goal
 >the user might now modify the goal, and update it to either be completed, or just modified.
 
-###6: delete a goal / complete a goal
+### 6: delete a goal / complete a goal
 >the user could now delete or complete the goal, depending on what they want to do.
 
-###7: view an achievement
+### 7: view an achievement
 >assuming that the user has now completed a goal, the achivement page will display it once the user has clicked on it.
 
-###8: log out
+### 8: log out
 >once satisfied with today, the user clicks to log out and is able to do so. End of user Scenario
