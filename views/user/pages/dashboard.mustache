@@ -56,12 +56,12 @@
         </div>
     </div>
 <!-- alert if not having inputted weight info -->
-    {{^weight_info}}
+    {{^goals}}
   <div class="alert alert-info alert-dismissible fade show" id="weight_alert">
         <strong>Thank you for registering!</strong> You should consider adding additional information to your profile, such as your weight, please do so at your own time by clicking <a href="/addinfo">Here</a>
         <button type="button" class="btn-close" data-bs-dismiss="alert" id="closingAlert"></button>
     </div>
-    {{/weight_info}}
+    {{/goals}}
     <!-- content -->
     
     <div class="row">
@@ -69,6 +69,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Activity overview</h5>
+                    <p class="card-text text-dark"> you currently have <b>{{completed_goals}}</b> completed Goals that became achievements and <b>{{uncompleted_goals}}</b> uncompleted Goals.</p>
                 <!-- goals == review of goals -->
                  <ul class="list-group list-group-flush">
                  

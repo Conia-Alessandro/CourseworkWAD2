@@ -24,7 +24,7 @@ router.get("/goals/:date/:type",verify,controller.modifySpecificGoal);
 //handle new goals
 router.get("/newGoal",verify,controller.newGoalLanding);
 router.post("/newGoal",verify,controller.createNewGoal);
-router.get("/newGoal/:date/:type",verify,controller.newGoalLandingSpecific);
+//router.get("/newGoal/:date/:type",verify,controller.newGoalLandingSpecific);
 // Intricate functionality on goal completion, update na deletion
 router.get("/achievements",verify,controller.achievements);
 router.post("/deleteGoal",verify,controller.deleteSpecificGoal);

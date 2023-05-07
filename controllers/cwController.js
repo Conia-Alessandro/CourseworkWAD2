@@ -69,7 +69,7 @@ exports.validate_fields = function (req, res) {
         })
 
     }
-    // no special character provided
+    // no special character
     if (!containsSpecial(password1) || !containsSpecial(password2)) {
         return res.render('user/register', {
             'title': 'Register',
@@ -129,7 +129,11 @@ function getDayName(dateStr, locale) {
     var date = new Date(dateStr);
     return date.toLocaleDateString(locale, { weekday: 'long' });
 }
-
+async function getGoals(user,completion){
+    const count = await goals_db.findGoalsCompletionNumber(user, completion);
+    completedGoals = count;
+    return completedGoals;
+}
 //landing in dashboard after login POST 
 exports.dashboard = function (req, res) {
     //goals_db.init(); //only once for testing
@@ -146,7 +150,19 @@ exports.dashboard = function (req, res) {
     var day = getDayName(currentDate, "en-gb"); //could be en-uk 
     let formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
     //calls database to get the current objectives for the day, then do something with it
-
+    let completedGoals;
+    let uncompletedGoals;
+    completedGoals = getGoals(req.username,true);
+    uncompletedGoals = getGoals(req.username,false);
+    completedGoals.then(function(result){
+        console.log("completed goals: ",result);
+        completedGoals = result;
+    })
+    uncompletedGoals.then(function(result){
+        console.log("uncompleted goals: ",result);
+        uncompletedGoals = result;
+    })
+    
     goals_db.getUserObjective(req.username,formattedDate)
     .then((list) => {
         //list == entries
@@ -157,7 +173,9 @@ exports.dashboard = function (req, res) {
             'user_name': req.username,
             'todays_date': formattedDate, // although replacable with dateuk, this works with the current database
             'day_name': day,
-            'goals':list
+            'goals':list,
+            'completed_goals': completedGoals,
+            'uncompleted_goals': uncompletedGoals
         })
     })
     .catch((err) => {
@@ -270,37 +288,6 @@ exports.newGoalLanding = function(req,res){
         'user': req.username,
         'user_name':req.username,
         'todays_date':today
-    });
-}
-exports.newGoalLandingSpecific = function(req,res){
-    console.log('Username: ', req.username);
-    let username = req.username;
-    let date = req.params.date; //format that the database likes
-    let type = req.params.type;
-    let dateElements = date.split("-");
-    //`${currentMonth}/${currentDay}/${currentYear}`
-    let type_name;
-    //types: Wellbeing, Health, Fitness
-    if(type =="steps"){
-        type_name ="fitness";
-    }
-    if(type =="sleep"){
-        type_name ="wellbeing";
-    }
-    if(type =="health"){
-        type_name ="health";
-    }
-    let currentDate = `${dateElements[1]}/${dateElements[2]}/${dateElements[0]}`; //format that the function getDayName likes
-    var day = getDayName(currentDate, "en-gb"); 
-    res.render('user/pages/newGoal',{
-        'title':'new goal',
-        'company_name':companyName,
-        'user': username,
-        'user_name':username,
-        'day_name': day,
-        'todays_date': date,
-        'goal_type':type,
-        'goal_type_name':type_name
     });
 }
 exports.createNewGoal = function(req,res){

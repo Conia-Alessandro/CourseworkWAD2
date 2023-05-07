@@ -106,6 +106,17 @@ class Objectives{
         this.db.persistence.compactDatafile(); //compact to remove both of them
         console.log("DB compacted");
     }
+    findGoalsCompletionNumber(username,completed){
+        return new Promise((resolve,reject)=>{
+            this.db.count({username: username, completed:completed},function(err,number){
+                if(err){
+                    reject(err);
+                }else{
+                    resolve(number);
+                }
+            })
+        })
+    }
     addObjective(username , type , subcategory, endValue, description, length , repetitive , repetition , date, endDate){
        
         var entry = {
