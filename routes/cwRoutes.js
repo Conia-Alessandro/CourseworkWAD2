@@ -22,7 +22,7 @@ router.get("/dashboard",verify,controller.dashboard);
 router.get("/goals",verify,controller.goal_page);
 router.get("/goals/:date/:type",verify,controller.modifySpecificGoal);
 //handle new goals
-router.get("/newGoal",verify,controller.newGoalLanding);
+router.get("/newGoal/:date/:type",verify,controller.newGoalLanding);
 router.post("/newGoal",verify,controller.createNewGoal);
 //router.get("/newGoal/:date/:type",verify,controller.newGoalLandingSpecific);
 // Intricate functionality on goal completion, update na deletion

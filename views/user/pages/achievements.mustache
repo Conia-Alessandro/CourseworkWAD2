@@ -20,7 +20,7 @@
                 <a class="nav-link" href="/goals">Goals centre</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link" href="/newGoal">Add Goal</a>
+                <a class="nav-link" href="/newGoal/{{todays_date}}/wellbeing">Add Goal</a>
             </li>
             <li class="nav-item my-auto">
                 <a class="nav-link" href="#">About us</a>
@@ -64,7 +64,7 @@
   <div class="card-body">
     <h5 class="card-title">Create goals to get achivements</h5>
     <p class="card-text"><a href="/newGoal" class="text-primary"style="text-decoration:none;">Sure is quiet here! why don't you create a goal for this {{todays_date}}, {{day_name}}? </a></p>
-    <a href="/newGoal" class="btn btn-primary">Create goal</a>
+    <a href="/newGoal/{{todays_date}}/wellbeing" class="btn btn-primary">Create goal</a>
   </div>
 </div>
     {{/any_achivements}}
@@ -168,15 +168,6 @@
   </div>
   <!-- Copyright -->
 </footer>
-<script>
-    /*
-    let goals_container = document.getElementsByClassName("goals_container")[0] //element.childNodes.length
-    let goal_types = document.getElementsByClassName("goal_type_retrived");
-    for(let i = 0; i< goals_container.childNodes.length; i++){
-        //do some
-    }
-    */
-
-</script>
-    </body>
+<script src="/scripts/achievementsHandler.js"></script>
+</body>
 </html>

@@ -132,7 +132,8 @@ class Objectives{
             repetition:repetition,
             date: date,
             endDate: endDate ,
-            completed : false  //by default false
+            completed : false,  //by default false
+            completedOn: ""
         }
         console.log('Objective added: ',entry);
         this.db.insert(entry, function(err,doc){

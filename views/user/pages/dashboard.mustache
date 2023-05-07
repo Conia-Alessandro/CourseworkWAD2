@@ -20,7 +20,7 @@
                 <a class="nav-link" href="/goals">Goals centre</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link" href="/newGoal">Add Goal</a>
+                <a class="nav-link" href="/newGoal/{{todays_date}}/wellbeing">Add Goal</a>
             </li>
             <li class="nav-item my-auto">
                 <a class="nav-link" href="#">About us</a>
@@ -208,21 +208,6 @@
   </div>
   <!-- Copyright -->
 </footer>
-<script>
-    //alert handling
-    let alert_x =document.getElementById("closingAlert");
-    let alert_element =document.getElementById("weight_alert");
-    alert_x.addEventListener("click", function(){
-        alert_element.classList.remove("show");
-        alert_element.remove();
-    })
-    let goals_container = document.getElementsByClassName("goals_container")[0] //element.childNodes.length
-    let goal_types = document.getElementsByClassName("goal_type_retrived");
-    for(let i = 0; i< goals_container.childNodes.length; i++){
-        //do some
-    }
-
-
-</script>
-    </body>
+<script src="/scripts/dashboardHandler.js"></script>
+</body>
 </html>

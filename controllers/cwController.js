@@ -280,6 +280,9 @@ exports.newGoalLanding = function(req,res){
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
+
+    let date = req.params.date; //format that the database likes
+    let type = req.params.type;
     //required allowed format year-month-day
     today = yyyy + '-' + mm + '-' + dd;
     res.render('user/pages/manualnewGoal',{
@@ -287,7 +290,9 @@ exports.newGoalLanding = function(req,res){
         'company_name':companyName,
         'user': req.username,
         'user_name':req.username,
-        'todays_date':today
+        'todays_date':today,
+        'date_value':date,
+        'chosenGoalType':type
     });
 }
 exports.createNewGoal = function(req,res){
