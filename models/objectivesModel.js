@@ -69,7 +69,19 @@ class Objectives{
             })
         })
     }
-    // check if length >= current 
+    // get achivements
+    getAllUserAchievements(username){
+        return new Promise((resolve,reject)=>{
+            this.db.find({username : username,completed:true}, function(err,entries){
+                if(err){
+                    reject(err);
+                }else{
+                    resolve(entries);
+                    console.log("get all achievements returns ",entries);
+                }
+            })
+        })
+    }
 
     //get all objectives by user
     getAllEntriesbyUser(username){

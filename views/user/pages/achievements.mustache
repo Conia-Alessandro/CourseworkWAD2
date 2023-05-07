@@ -78,7 +78,7 @@
                 <ul class="list-group list-group-flush">
                  <!-- add star after achivement ::after -->
                 {{#achievements}}
-                <li class="list-group-item text-dark">Achievement got on {{date}}, of category: <b class="text-success goal_type_retrived">{{type}}</b>(<b class="text-warning">{{subcategory}}</b>):<br><a href="#">{{description}}</a><br> Objective completed with <b class="text-info">{{endValue}}</b> out of the duration of <b class="text-primary">{{endValue}}</b> total days</li>
+                <li class="list-group-item text-dark">Achievement got on <b class="text-info">{{completedOn}}</b>, of category: <b class="text-success goal_type_retrived">{{type}}</b>(<b class="text-warning">{{subcategory}}</b>):<br><i>{{description}}</i><br> Objective completed with <b class="text-info">{{currentValue}}</b> out of the set end value, which was <b class="text-primary">{{endValue}}</b>. Goal completed within the end date: <b class="text-primary">{{endDate}}</b></li>
                 {{/achievements}}
                 </ul>
                 <!-- no goals == image and create a goal button -->

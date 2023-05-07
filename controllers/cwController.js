@@ -337,6 +337,20 @@ exports.achievements = function (req, res) {
     let formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
     //calls database to get the current objectives for the day, then do something with it
     //goals_db.getCompletedGoals(username: req.username, completed: true)
+    goals_db.getAllUserAchievements(req.username)
+    .then((entries) => {
+        res.render("user/pages/achievements", {
+            'title': 'user achievements page',
+            'company_name': companyName,
+            'user': req.username,
+            'user_name': req.username,
+            'todays_date': formattedDate,
+            'day_name': day,
+            'achievements':entries
+        })
+
+    })
+    .catch((err) => {
         res.render("user/pages/achievements", {
             'title': 'user achievements page',
             'company_name': companyName,
@@ -346,6 +360,8 @@ exports.achievements = function (req, res) {
             'day_name': day
         })
 
+    })
+        
 }
 exports.faq = function (req, res) {
     res.send("<h1>faq to be implemented</h1>");
