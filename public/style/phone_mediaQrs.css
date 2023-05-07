@@ -1,8 +1,5 @@
  /* adjust layout for screens smaller than 768px */
  @media screen and (max-width: 767px) {
-    .card-body {
-      text-align: center;
-    }
     .card-body img {
       max-width: 100%;
       height: auto;
@@ -13,9 +10,15 @@
     .resize_on_small {
     display: none;
     }
+    .hide_on_small{
+        display: none;
+      }
   }
   @media only screen and (max-width: 480px) {
   .resize_on_small {
+    display: none;
+  }
+  .hide_on_small{
     display: none;
   }
 }
